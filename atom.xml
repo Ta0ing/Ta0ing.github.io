@@ -42,6 +42,30 @@
   </entry>
   
   <entry>
+    <title>3、Cobaltstrike Beacon与菜单栏、视图</title>
+    <link href="http://ta0ing.github.io/article/a8d93641.html"/>
+    <id>http://ta0ing.github.io/article/a8d93641.html</id>
+    <published>2021-10-09T17:10:48.000Z</published>
+    <updated>2021-10-09T17:23:09.016Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="3-Cobaltstrike-Beacon与菜单栏、视图"><a href="#3-Cobaltstrike-Beacon与菜单栏、视图" class="headerlink" title="3.Cobaltstrike Beacon与菜单栏、视图"></a>3.Cobaltstrike Beacon与菜单栏、视图</h2><h3 id="一、Beacon详解"><a href="#一、Beacon详解" class="headerlink" title="一、Beacon详解"></a>一、Beacon详解</h3><p>右键目标interact来使用Beacon，可以用它来执行各种命令<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605853_20200820195323098_28548.png"></p><ul><li><p>在Cobalt Strike中它的心跳默认是60s(执行一个命令你需要等待60秒后返回。因为每一分钟目标主机与teamserver通信一<br>次)这是你的操作就很郁闷了。</p></li><li><p>Cobalt Strike设置3秒真男人<br><code>sleep 3</code><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605853_20200820200116977_32605.png"></p></li></ul><h3 id="二、Cobalt-Strike多种beacon"><a href="#二、Cobalt-Strike多种beacon" class="headerlink" title="二、Cobalt Strike多种beacon"></a>二、Cobalt Strike多种beacon</h3><ul><li><strong>1、http beacon和tcp beacon这两种beacon都是比较普通的，两者区别只是主机与teamserver的通信协议不同而已。</strong><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605854_20200820201848361_24834.png"> <img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605854_20200820201821895_4198.png"></li><li><strong>2、SMB beacon</strong><br>官方介绍:SMB Beacon使用命名管道通过父级Beacon进行通讯，当两个Beacons链接后，<strong>子Beacon</strong>从<strong>父Beacon获取</strong>到任务并发送。</li><li><em>因为链接通讯的Beacons使用Windows pipe进行通信，此流量封装在SMB协议中，所以SMB Beacon相对隐蔽，可以绕一些防火墙</em>*<br>这张图很好的诠释了SMB beacon的工作流程<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605854_20200820202651724_29752.png"></li><li><strong>3、smb beacon使用</strong><br>这种beacon要求具有SMB Beacon的主机必须接受端口445上的连接. 派生一个SMB Beacon方法：<br>在Listner生成SMB Beacon&gt;目标主机&gt;右键&gt; spawn as&gt;选中对应的Listener&gt;上线<br>或在beacon中使用命令<code>spawn SMB Beacon</code>（SMB Beacon为我的SMB Beacon listener名字）<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605854_20200820203618393_15109.png"><br>运行成功后外部可以看到∞∞这个字符，这就是派生的SMB Beacon。<br>当前是连接状态，你可以Beacon上用link <ip>命令链接他或者unlink <ip>命令断开它。<br>这种beacon在内网横向渗透中运用的很多，横向渗透这里暂时不提。<br>可以使用ipc $等将生成的SMB Beacon上传到目标主机执行，但是目标主机并不会直<br>接上线的，需要我们自己用链接命令(link <ip>)去</li><li>4、SMB Beacon使用案例<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605854_20200820205233195_8561.png"></li><li>使用psexec来登录，这里使用SMB Beacon listener、选着子Beacon<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605854_20200820205338313_20479.png"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605855_20200820205537939_5588.png"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605855_20200820205738422_11021.png"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605855_20200820205822871_31672.png"></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;3-Cobaltstrike-Beacon与菜单栏、视图&quot;&gt;&lt;a href=&quot;#3-Cobaltstrike-Beacon与菜单栏、视图&quot; class=&quot;headerlink&quot; title=&quot;3.Cobaltstrike Beacon与菜单栏、视图&quot;&gt;&lt;/a&gt;3.</summary>
+      
+    
+    
+    
+    <category term="内网渗透" scheme="http://ta0ing.github.io/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="CobaltStrike" scheme="http://ta0ing.github.io/tags/CobaltStrike/"/>
+    
+  </entry>
+  
+  <entry>
     <title>1、Cobaltstrike 安装与简介</title>
     <link href="http://ta0ing.github.io/article/a8d93643.html"/>
     <id>http://ta0ing.github.io/article/a8d93643.html</id>
