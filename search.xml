@@ -20,7 +20,9 @@
       
         <tags>
             
-            <tag> Apache </tag>
+            <tag> Apache HTTPD </tag>
+            
+            <tag> CVE-2021-41773 </tag>
             
         </tags>
       
