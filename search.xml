@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>apache httpd多后缀解析漏洞复现</title>
+      <link href="/2021/10/09/apache-httpd%E5%A4%9A%E5%90%8E%E7%BC%80%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+      <url>/2021/10/09/apache-httpd%E5%A4%9A%E5%90%8E%E7%BC%80%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 文章分类，本主题的分类表示宏观上大的分类，只建议一篇文章一个分类。例如漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Apache </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>apache 解析漏洞（CVE-2017-15715)</title>
+      <link href="/2021/10/09/apache-%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E%EF%BC%88CVE-2017-15715/"/>
+      <url>/2021/10/09/apache-%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E%EF%BC%88CVE-2017-15715/</url>
+      
+        <content type="html"><![CDATA[<h2 id="CVE-2017-15715"><a href="#CVE-2017-15715" class="headerlink" title="CVE-2017-15715"></a>CVE-2017-15715</h2><h3 id="一、漏洞描述"><a href="#一、漏洞描述" class="headerlink" title="一、漏洞描述"></a>一、漏洞描述</h3><p>Apache HTTPD是一款HTTP服务器，它可以通过mod_php来运行PHP网页。其2.4.0~2.4.29版本中存在一个解析漏洞，在解析PHP时，1.php\x0A将被按照PHP后缀进行解析，导致绕过一些服务器的安全策略。</p><h3 id="二、环境搭建"><a href="#二、环境搭建" class="headerlink" title="二、环境搭建"></a>二、环境搭建</h3><p>使用Vulhub</p><h3 id="三、漏洞复现"><a href="#三、漏洞复现" class="headerlink" title="三、漏洞复现"></a>三、漏洞复现</h3><p>上传一个名为six.php的文件，被拦截：<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606482_20200907160230876_29113.png" alt="img"><br><strong>在1.php后面插入一个\x0A（注意，不能是\x0D\x0A，只能是一个\x0A），不再拦截：</strong><br>修改后</p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606482_20200908100228730_20905.png" alt="img"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606482_20200908100418532_11097.png" alt="img"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Apache HTTPD </tag>
+            
+            <tag> CVE-2017-15715 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Apache HTTP Server 2.4.49 路径穿越漏洞(CVE-2021-41773)</title>
       <link href="/2021/10/09/Apache-HTTP-Server-2-4-49-%E8%B7%AF%E5%BE%84%E7%A9%BF%E8%B6%8A%E6%BC%8F%E6%B4%9E-CVE-2021-41773/"/>
       <url>/2021/10/09/Apache-HTTP-Server-2-4-49-%E8%B7%AF%E5%BE%84%E7%A9%BF%E8%B6%8A%E6%BC%8F%E6%B4%9E-CVE-2021-41773/</url>
