@@ -516,20 +516,20 @@
                 <p><strong>1. 简介</strong></p>
 <p>​    Harbor是一个用于存储和分发Docker镜像的企业级Registry服务器，通过添加一些企业必需的功能特性，例如安全、标识和管理等，扩展了开源Docker Distribution。</p>
 <p>​    作为一个企业级私有Registry服务器，Harbor提供了更好的性能和安全。提升用户使用Registry构建和运行环境传输镜像的效率。Harbor支持安装在多个Registry节点的镜像资源复制，镜像全部保存在私有Registry中， 确保数据和知识产权在公司内部网络中管控。另外，Harbor也提供了高级的安全特性，诸如用户管理，访问控制和活动审计等。</p>
-<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012133854849.png" alt="image-20211012133854849"></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012133854849.png"></p>
 <p><strong>2.影响范围</strong></p>
 <p><code>Harbor: 1.7.0-1.8.2</code></p>
 <p><strong>3.复现</strong></p>
 <p>语法搜索 </p>
 <p><code>title=&quot;Harbor&quot; &amp;&amp; country=CN</code></p>
 <p><strong>注册，然后抓包</strong></p>
-<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012133912238.png" alt="image-20211012133912238"></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012133912238.png"></p>
 <p><strong>改包，在最后数据包加上：”has_admin_role”:true</strong></p>
-<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012134504203.png" alt="image-20211012134504203"></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012134504203.png"></p>
 <p><strong>发包验证，状态是201代表成功</strong></p>
-<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012134353211.png" alt="image-20211012134353211"></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012134353211.png"></p>
 <p><strong>登录验证</strong></p>
-<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012134625223.png" alt="image-20211012134625223"></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012134625223.png"></p>
 <h2 id="4-修复方案"><a href="#4-修复方案" class="headerlink" title="4.修复方案"></a>4.修复方案</h2><p>升级Harbor版本到 1.7.6 和 1.8.3</p>
 
                 
