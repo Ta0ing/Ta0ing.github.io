@@ -6,7 +6,7 @@
   <link href="http://ta0ing.github.io/atom.xml" rel="self"/>
   
   <link href="http://ta0ing.github.io/"/>
-  <updated>2021-10-09T17:26:10.077Z</updated>
+  <updated>2021-10-12T06:23:50.975Z</updated>
   <id>http://ta0ing.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Harbor任意管理员注册漏洞</title>
+    <link href="http://ta0ing.github.io/article/bf4f999f.html"/>
+    <id>http://ta0ing.github.io/article/bf4f999f.html</id>
+    <published>2021-10-12T05:36:01.000Z</published>
+    <updated>2021-10-12T06:23:50.975Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>1. 简介</strong></p><p>​    Harbor是一个用于存储和分发Docker镜像的企业级Registry服务器，通过添加一些企业必需的功能特性，例如安全、标识和管理等，扩展了开源Docker Distribution。</p><p>​    作为一个企业级私有Registry服务器，Harbor提供了更好的性能和安全。提升用户使用Registry构建和运行环境传输镜像的效率。Harbor支持安装在多个Registry节点的镜像资源复制，镜像全部保存在私有Registry中， 确保数据和知识产权在公司内部网络中管控。另外，Harbor也提供了高级的安全特性，诸如用户管理，访问控制和活动审计等。</p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012133854849.png" alt="image-20211012133854849"></p><p><strong>2.影响范围</strong></p><p><code>Harbor: 1.7.0-1.8.2</code></p><p><strong>3.复现</strong></p><p>语法搜索 </p><p><code>title=&quot;Harbor&quot; &amp;&amp; country=CN</code></p><p><strong>注册，然后抓包</strong></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012133912238.png" alt="image-20211012133912238"></p><p><strong>改包，在最后数据包加上：”has_admin_role”:true</strong></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012134504203.png" alt="image-20211012134504203"></p><p><strong>发包验证，状态是201代表成功</strong></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012134353211.png" alt="image-20211012134353211"></p><p><strong>登录验证</strong></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211012134625223.png" alt="image-20211012134625223"></p><h2 id="4-修复方案"><a href="#4-修复方案" class="headerlink" title="4.修复方案"></a>4.修复方案</h2><p>升级Harbor版本到 1.7.6 和 1.8.3</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;strong&gt;1. 简介&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​    Harbor是一个用于存储和分发Docker镜像的企业级Registry服务器，通过添加一些企业必需的功能特性，例如安全、标识和管理等，扩展了开源Docker Distribution。&lt;/p&gt;
+&lt;p&gt;​</summary>
+      
+    
+    
+    
+    <category term="漏洞复现" scheme="http://ta0ing.github.io/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    
+    <category term="Harbor" scheme="http://ta0ing.github.io/tags/Harbor/"/>
+    
+  </entry>
+  
+  <entry>
     <title>3、Cobaltstrike Beacon与菜单栏视图</title>
     <link href="http://ta0ing.github.io/article/42e57ad0.html"/>
     <id>http://ta0ing.github.io/article/42e57ad0.html</id>
     <published>2021-10-09T17:24:53.000Z</published>
-    <updated>2021-10-09T17:26:10.077Z</updated>
+    <updated>2021-10-09T17:26:14.583Z</updated>
     
     <content type="html"><![CDATA[<h2 id="3-Cobaltstrike-Beacon与菜单栏、视图"><a href="#3-Cobaltstrike-Beacon与菜单栏、视图" class="headerlink" title="3.Cobaltstrike Beacon与菜单栏、视图"></a>3.Cobaltstrike Beacon与菜单栏、视图</h2><h3 id="一、Beacon详解"><a href="#一、Beacon详解" class="headerlink" title="一、Beacon详解"></a>一、Beacon详解</h3><p>右键目标interact来使用Beacon，可以用它来执行各种命令<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605853_20200820195323098_28548.png"></p><ul><li><p>在Cobalt Strike中它的心跳默认是60s(执行一个命令你需要等待60秒后返回。因为每一分钟目标主机与teamserver通信一<br>次)这是你的操作就很郁闷了。</p></li><li><p>Cobalt Strike设置3秒真男人<br><code>sleep 3</code><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605853_20200820200116977_32605.png"></p></li></ul><h3 id="二、Cobalt-Strike多种beacon"><a href="#二、Cobalt-Strike多种beacon" class="headerlink" title="二、Cobalt Strike多种beacon"></a>二、Cobalt Strike多种beacon</h3><ul><li><strong>1、http beacon和tcp beacon这两种beacon都是比较普通的，两者区别只是主机与teamserver的通信协议不同而已。</strong><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605854_20200820201848361_24834.png"> <img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605854_20200820201821895_4198.png"></li><li><strong>2、SMB beacon</strong><br>官方介绍:SMB Beacon使用命名管道通过父级Beacon进行通讯，当两个Beacons链接后，<strong>子Beacon</strong>从<strong>父Beacon获取</strong>到任务并发送。</li><li><em>因为链接通讯的Beacons使用Windows pipe进行通信，此流量封装在SMB协议中，所以SMB Beacon相对隐蔽，可以绕一些防火墙</em>*<br>这张图很好的诠释了SMB beacon的工作流程<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605854_20200820202651724_29752.png"></li><li><strong>3、smb beacon使用</strong><br>这种beacon要求具有SMB Beacon的主机必须接受端口445上的连接. 派生一个SMB Beacon方法：<br>在Listner生成SMB Beacon&gt;目标主机&gt;右键&gt; spawn as&gt;选中对应的Listener&gt;上线<br>或在beacon中使用命令<code>spawn SMB Beacon</code>（SMB Beacon为我的SMB Beacon listener名字）<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605854_20200820203618393_15109.png"><br>运行成功后外部可以看到∞∞这个字符，这就是派生的SMB Beacon。<br>当前是连接状态，你可以Beacon上用link <ip>命令链接他或者unlink <ip>命令断开它。<br>这种beacon在内网横向渗透中运用的很多，横向渗透这里暂时不提。<br>可以使用ipc $等将生成的SMB Beacon上传到目标主机执行，但是目标主机并不会直<br>接上线的，需要我们自己用链接命令(link <ip>)去</li><li>4、SMB Beacon使用案例<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605854_20200820205233195_8561.png"></li><li>使用psexec来登录，这里使用SMB Beacon listener、选着子Beacon<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605854_20200820205338313_20479.png"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605855_20200820205537939_5588.png"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605855_20200820205738422_11021.png"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605855_20200820205822871_31672.png"></li></ul>]]></content>
     
